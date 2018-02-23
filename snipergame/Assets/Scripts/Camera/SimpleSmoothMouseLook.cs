@@ -5,32 +5,28 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 {
     Vector2 _mouseAbsolute;
     Vector2 _smoothMouse;
- 
-    public Vector2 clampInDegrees = new Vector2(360, 180);
-    public bool lockCursor;
-    public Vector2 sensitivity = new Vector2(2, 2);
-    public Vector2 smoothing = new Vector2(3, 3);
-    public Vector2 targetDirection;
-    public Vector2 targetCharacterDirection;
- 
-    // Assign this if there's a parent object controlling motion, such as a Character Controller.
-    // Yaw rotation will affect this object instead of the camera if set.
-    public GameObject characterBody;
+
+    [SerializeField]
+    private Vector2 clampInDegrees = new Vector2(360, 180);
+    [SerializeField]
+    private bool lockCursor;
+    [SerializeField]
+    private Vector2 sensitivity = new Vector2(2, 2);
+    [SerializeField]
+    private Vector2 smoothing = new Vector2(3, 3);
+    [SerializeField]
+    private Vector2 targetDirection;
+    [SerializeField]
+    private Vector2 targetCharacterDirection;
  
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
- 
-        // Set target direction for the character body to its inital state.
-        if (characterBody)
-            targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
     }
  
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         // Ensure the cursor is always locked when set
         if (lockCursor)
         {
@@ -64,16 +60,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
  
         transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
  
-        // If there's a character body that acts as a parent to the camera
-        if (characterBody)
-        {
-            var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, Vector3.up);
-            characterBody.transform.localRotation = yRotation * targetCharacterOrientation;
-        }
-        else
-        {
-            var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
-            transform.localRotation *= yRotation;
-        }
+        var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
+        transform.localRotation *= yRotation;
     }
 }
