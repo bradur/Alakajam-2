@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    
     public static GameManager main;
 
     void Awake()
@@ -16,6 +15,14 @@ public class GameManager : MonoBehaviour {
         main = this;
     }
 
+    [SerializeField]
+    [Range(1, 20)]
+    private int numberOfBullets = 5;
+
+    // enable print debugs
+    [SerializeField]
+    private bool debugMode = false;
+    public bool DebugMode { get { return debugMode; } }
 
     void Start () {
     
@@ -23,6 +30,16 @@ public class GameManager : MonoBehaviour {
 
     void Update () {
     
+    }
+
+    public bool SpendBullet()
+    {
+        if (numberOfBullets > 0)
+        {
+            numberOfBullets -= 1;
+            return true;
+        }
+        return false;
     }
 
 }

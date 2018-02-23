@@ -10,7 +10,8 @@ public enum KeyTriggeredAction
     None,
     ToggleScope,
     IncreaseScopedZoom,
-    DecreaseScopedZoom
+    DecreaseScopedZoom,
+    ShootGun
 }
 
 public enum MouseScrollWheel
@@ -30,9 +31,6 @@ public class GameKey : System.Object
 
 public class KeyManager : MonoBehaviour
 {
-
-    [SerializeField]
-    private bool debug;
 
     [SerializeField]
     private bool totalDebug = false;
@@ -71,7 +69,7 @@ public class KeyManager : MonoBehaviour
     {
         if (Input.GetKeyDown(GetKeyCode(action)))
         {
-            if (debug)
+            if (GameManager.main.DebugMode)
             {
                 Debug.Log(
                     string.Format(
@@ -103,7 +101,7 @@ public class KeyManager : MonoBehaviour
         }
         if (Input.GetKeyUp(GetKeyCode(action)))
         {
-            if (debug)
+            if (GameManager.main.DebugMode)
             {
                 Debug.Log(
                     string.Format(
@@ -123,7 +121,7 @@ public class KeyManager : MonoBehaviour
     {
         if (Input.GetKey(GetKeyCode(action)))
         {
-            if (debug)
+            if (GameManager.main.DebugMode)
             {
                 Debug.Log(
                     string.Format(

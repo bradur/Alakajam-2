@@ -40,7 +40,10 @@ public class CameraZoom : MonoBehaviour
         targetCamera.fieldOfView = defaultFov;
         if (zoomedInFov <= minZoomedInFov)
         {
-            Debug.Log("<b>[<color=red>WARNING</color>]:</b>zoomedInFov must be smaller than minZoomedInFov!");
+            if (GameManager.main.DebugMode)
+            {
+                Debug.Log("<b>[<color=red>WARNING</color>]:</b>zoomedInFov must be smaller than minZoomedInFov!");
+            }
         }
     }
 
@@ -48,9 +51,12 @@ public class CameraZoom : MonoBehaviour
     {
         float fov = defaultFov;
 
-        if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ToggleScope))
+        if (KeyManager.main != null)
         {
-            zoomedIn = !zoomedIn;
+            if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ToggleScope))
+            {
+                zoomedIn = !zoomedIn;
+            }
         }
 
         if (zoomedIn)
