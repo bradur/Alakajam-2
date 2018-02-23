@@ -8,12 +8,23 @@ using System.Collections.Generic;
 public enum KeyTriggeredAction
 {
     None,
+    ToggleScope,
+    IncreaseScopedZoom,
+    DecreaseScopedZoom
+}
+
+public enum MouseScrollWheel
+{
+    None,
+    ScrollWheelUp,
+    ScrollWheelDown
 }
 
 [System.Serializable]
 public class GameKey : System.Object
 {
     public KeyCode key;
+    public MouseScrollWheel mouseScrollWheel;
     public KeyTriggeredAction action;
 }
 
@@ -22,6 +33,9 @@ public class KeyManager : MonoBehaviour
 
     [SerializeField]
     private bool debug;
+
+    [SerializeField]
+    private bool totalDebug = false;
 
     public static KeyManager main;
 
@@ -33,13 +47,40 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private List<GameKey> gameKeys = new List<GameKey>();
 
+    [SerializeField]
+    private string debugPrefix = "<b>[<color=green>Input</color>]:</b>";
+
+    private void Update()
+    {
+        if (totalDebug)
+        {
+            if (Input.anyKey)
+            {
+                Debug.Log(
+                    string.Format(
+                        "{0} Key {1} pressed.",
+                        debugPrefix,
+                        Input.inputString
+                    )
+                );
+            }
+        }
+    }
+
     public bool GetKeyDown(KeyTriggeredAction action)
     {
         if (Input.GetKeyDown(GetKeyCode(action)))
         {
             if (debug)
             {
-                Debug.Log(string.Format("Key {0} pressed down to perform {1}.", GetKeyString(action), action.ToString()));
+                Debug.Log(
+                    string.Format(
+                        "{0} Key {1} pressed down to perform {2}.",
+                        debugPrefix,
+                        GetKeyString(action),
+                        action.ToString()
+                    )
+                );
             }
             return true;
         }
@@ -48,11 +89,30 @@ public class KeyManager : MonoBehaviour
 
     public bool GetKeyUp(KeyTriggeredAction action)
     {
+        MouseScrollWheel wheel = GetMouseWheelType(action);
+        if (wheel != MouseScrollWheel.None)
+        {
+            if (wheel == MouseScrollWheel.ScrollWheelUp && Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                return true;
+            }
+            if (wheel == MouseScrollWheel.ScrollWheelDown && Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                return true;
+            }
+        }
         if (Input.GetKeyUp(GetKeyCode(action)))
         {
             if (debug)
             {
-                Debug.Log(string.Format("Key {0} let up to perform {1}.", GetKeyString(action), action.ToString()));
+                Debug.Log(
+                    string.Format(
+                        "{0} Key {1} let up to perform {2}.",
+                        debugPrefix,
+                        GetKeyString(action),
+                        action.ToString()
+                    )
+                );
             }
             return true;
         }
@@ -65,11 +125,30 @@ public class KeyManager : MonoBehaviour
         {
             if (debug)
             {
-                Debug.Log(string.Format("Key {0} held to perform {1}.", GetKeyString(action), action.ToString()));
+                Debug.Log(
+                    string.Format(
+                        "{0} Key {1} held down to perform {2}.",
+                        debugPrefix,
+                        GetKeyString(action),
+                        action.ToString()
+                    )
+                );
             }
             return true;
         }
         return false;
+    }
+
+    public MouseScrollWheel GetMouseWheelType(KeyTriggeredAction action)
+    {
+        foreach (GameKey gameKey in gameKeys)
+        {
+            if (gameKey.action == action)
+            {
+                return gameKey.mouseScrollWheel;
+            }
+        }
+        return MouseScrollWheel.None;
     }
 
     public KeyCode GetKeyCode(KeyTriggeredAction action)

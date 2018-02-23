@@ -51,5 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c7335fba9ad284b9efec3f29fd824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  gameKeys: []
+  debug: 1
+  totalDebug: 0
+  gameKeys:
+  - key: 324
+    mouseScrollWheel: 0
+    action: 1
+  - key: 0
+    mouseScrollWheel: 1
+    action: 2
+  - key: 0
+    mouseScrollWheel: 2
+    action: 3
+  debugPrefix: <b>[<color=green>Input</color>]:</b>
