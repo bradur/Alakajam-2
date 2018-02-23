@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum Action
+public enum KeyTriggeredAction
 {
     None,
 }
@@ -14,7 +14,7 @@ public enum Action
 public class GameKey : System.Object
 {
     public KeyCode key;
-    public Action action;
+    public KeyTriggeredAction action;
 }
 
 public class KeyManager : MonoBehaviour
@@ -33,7 +33,7 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private List<GameKey> gameKeys = new List<GameKey>();
 
-    public bool GetKeyDown(Action action)
+    public bool GetKeyDown(KeyTriggeredAction action)
     {
         if (Input.GetKeyDown(GetKeyCode(action)))
         {
@@ -46,7 +46,7 @@ public class KeyManager : MonoBehaviour
         return false;
     }
 
-    public bool GetKeyUp(Action action)
+    public bool GetKeyUp(KeyTriggeredAction action)
     {
         if (Input.GetKeyUp(GetKeyCode(action)))
         {
@@ -59,7 +59,7 @@ public class KeyManager : MonoBehaviour
         return false;
     }
 
-    public bool GetKey(Action action)
+    public bool GetKey(KeyTriggeredAction action)
     {
         if (Input.GetKey(GetKeyCode(action)))
         {
@@ -72,7 +72,7 @@ public class KeyManager : MonoBehaviour
         return false;
     }
 
-    public KeyCode GetKeyCode(Action action)
+    public KeyCode GetKeyCode(KeyTriggeredAction action)
     {
         foreach (GameKey gameKey in gameKeys)
         {
@@ -84,7 +84,7 @@ public class KeyManager : MonoBehaviour
         return KeyCode.None;
     }
 
-    public string GetKeyString(Action action)
+    public string GetKeyString(KeyTriggeredAction action)
     {
         foreach (GameKey gameKey in gameKeys)
         {
