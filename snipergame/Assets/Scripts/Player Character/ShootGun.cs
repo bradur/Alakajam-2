@@ -83,6 +83,7 @@ public class ShootGun : MonoBehaviour
         if (simpleHits.Length > 0)
         {
             RaycastHit[] complexHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, complexEnemyLayer);
+            Vector3 furthestPoint = Vector3.zero;
             foreach (RaycastHit hitInfo in complexHits)
             {
                 if (GameManager.main.DebugMode)
@@ -94,7 +95,17 @@ public class ShootGun : MonoBehaviour
                         hitInfo.point
                     ));
                 }
+                if (furthestPoint.magnitude < hitInfo.point.magnitude)
+                {
+                    furthestPoint = hitInfo.point;
+                }
                 // handle hit logic here
+            }
+            if (complexHits.Length > 0)
+            {
+                GameManager.main.SetScopeVisibility(false);
+                //GameManager.main.SetGunVisibility(false);
+                GameManager.main.StartBulletCam(furthestPoint, aim.forward);
             }
             foreach (RaycastHit hitInfo in simpleHits)
             {

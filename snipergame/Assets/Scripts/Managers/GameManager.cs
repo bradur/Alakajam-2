@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
     private ShootGun shootGun;
 
     [SerializeField]
+    private BulletCam bulletCam;
+
+    [SerializeField]
+    private CameraZoom cameraZoom;
+
+    [SerializeField]
     private Camera mainCamera;
     public Camera MainCamera { get { return mainCamera; } }
 
@@ -81,6 +87,28 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    //
+    public void SetCameraControlState(bool enabled)
+    {
+        cameraZoom.enabled = enabled;
+        shootGun.enabled = enabled;
+    }
+
+    public void SetGunVisibility(bool visibility)
+    {
+        cameraZoom.SetGunVisibility(visibility);
+    }
+
+    public void SetScopeVisibility(bool visibility)
+    {
+        cameraZoom.SetScopeVisibility(visibility);
+    }
+
+    public void StartBulletCam(Vector3 target, Vector3 direction)
+    {
+        bulletCam.StartCam(target, direction);
     }
 
     public void SetPlayerPosition(Vector3 position)

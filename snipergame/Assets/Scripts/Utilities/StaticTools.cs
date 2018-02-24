@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Tools : MonoBehaviour
+public class StaticTools : MonoBehaviour
 {
     public static int ClampInt(int inclusiveStart, int inclusiveEnd, int value)
     {

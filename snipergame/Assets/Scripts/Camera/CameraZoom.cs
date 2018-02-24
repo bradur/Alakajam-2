@@ -45,6 +45,9 @@ public class CameraZoom : MonoBehaviour
     [SerializeField]
     private DrawLine drawHorizontalLine;
 
+    [SerializeField]
+    private GameObject gunModel;
+
     void Start()
     {
         simpleSmoothMouseLook = GetComponent<SimpleSmoothMouseLook>();
@@ -64,6 +67,20 @@ public class CameraZoom : MonoBehaviour
         }
     }
 
+    public void SetScopeVisibility (bool visibility)
+    {
+        zoomedIn = visibility;
+        UIManager.main.SetScopeVisibility(zoomedIn);
+        drawVerticalLine.SetVisibility(zoomedIn);
+        drawHorizontalLine.SetVisibility(zoomedIn);
+        SetGunVisibility(!zoomedIn);
+    }
+
+    public void SetGunVisibility(bool visibility)
+    {
+        gunModel.SetActive(visibility);
+    }
+
     void Update()
     {
         float fov = defaultFov;
@@ -72,10 +89,7 @@ public class CameraZoom : MonoBehaviour
         {
             if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ToggleScope))
             {
-                zoomedIn = !zoomedIn;
-                UIManager.main.SetScopeVisibility(zoomedIn);
-                drawVerticalLine.SetVisibility(zoomedIn);
-                drawHorizontalLine.SetVisibility(zoomedIn);
+                SetScopeVisibility(!zoomedIn);
             }
         }
 
@@ -89,7 +103,7 @@ public class CameraZoom : MonoBehaviour
             {
                 scopedZoom -= 1;
             }
-            scopedZoom = Tools.ClampInt(0, scopedZoomSteps, scopedZoom);
+            scopedZoom = StaticTools.ClampInt(0, scopedZoomSteps, scopedZoom);
 
             fov = zoomedInFov - ((zoomedInFov - minZoomedInFov) / scopedZoomSteps) * scopedZoom;
         }
