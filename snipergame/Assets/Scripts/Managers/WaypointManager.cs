@@ -31,7 +31,10 @@ public class WaypointManager : MonoBehaviour
 
         if(selected != null && selected.tag == "WaypointMarker")
         {
-            Debug.Log("Neighbour created");
+            if (GameManager.main.DebugMode)
+            {
+                Debug.Log("Neighbour created");
+            }
             WaypointMarker selectedMarker = selected.GetComponent<WaypointMarker>();
             WaypointNetwork selectedNetwork = selectedMarker.Network;
             WaypointMarker obj = Resources.Load<WaypointMarker>("WaypointMarker");
@@ -70,7 +73,10 @@ public class WaypointManager : MonoBehaviour
             WaypointMarker selectedMarker2 = t2.GetComponent<WaypointMarker>();
             if (selectedMarker1.Network == selectedMarker2.Network)
             {
-                Debug.Log("Neighbours connected");
+                if (GameManager.main.DebugMode)
+                {
+                    Debug.Log("Neighbours connected");
+                }
                 selectedMarker1.AddNeighbour(selectedMarker2);
                 selectedMarker2.AddNeighbour(selectedMarker1);
             }

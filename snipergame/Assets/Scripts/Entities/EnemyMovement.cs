@@ -33,7 +33,6 @@ public class EnemyMovement : MonoBehaviour
 
         if(waiting)
         {
-            Debug.Log(Time.time + ", " + startWaitingTime + ", " + (Time.time - startWaitingTime));
             if ((Time.time - startWaitingTime) >= waitTime)
             {
                 waiting = false;
