@@ -54,6 +54,7 @@ public class TrailPool : MonoBehaviour
         print.transform.SetParent(trailContainer, true);
         print.gameObject.SetActive(false);
         backupTrail.Add(print);
+        printCount -= 1;
     }
 
     public FootPrint GetFootPrint()

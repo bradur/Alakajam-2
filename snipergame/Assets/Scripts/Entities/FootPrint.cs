@@ -58,6 +58,5 @@ public class FootPrint : MonoBehaviour
     public void Deactivate()
     {
         gameObject.SetActive(false);
-
     }
 }

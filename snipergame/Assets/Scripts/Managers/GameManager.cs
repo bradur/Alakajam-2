@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     private TrailManager trailManagerPrefab;
 
     [SerializeField]
+    private BulletHoleManager bulletHoleManagerPrefab;
+
+    [SerializeField]
     private Transform playerTransform;
 
     [SerializeField]
@@ -75,6 +78,9 @@ public class GameManager : MonoBehaviour
 
         TrailManager trailManager = Instantiate(trailManagerPrefab);
         trailManager.transform.SetParent(transform, false);
+
+        BulletHoleManager bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
+        bulletHoleManager.transform.SetParent(transform, false);
 
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
