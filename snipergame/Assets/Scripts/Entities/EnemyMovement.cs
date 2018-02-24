@@ -41,6 +41,11 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (network == null || network.Markers == null || network.Markers.Count == 0)
+        {
+            return;
+        }
+
         if(currentMarker == null)
         {
             currentMarker = network.Markers[0]; 
