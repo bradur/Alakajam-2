@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -106,9 +107,9 @@ public class GameManager : MonoBehaviour
         cameraZoom.SetScopeVisibility(visibility);
     }
 
-    public void StartBulletCam(Vector3 target, Vector3 direction, int numTargets)
+    public void StartBulletCam(Vector3 start, Vector3 target, Vector3 direction, int numTargets, List<Enemy> enemies)
     {
-        bulletCam.StartCam(target, direction, numTargets);
+        bulletCam.StartCam(start, target, direction, numTargets, enemies);
     }
 
     public void SetPlayerPosition(Vector3 position)

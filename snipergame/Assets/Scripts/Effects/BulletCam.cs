@@ -4,11 +4,14 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BulletCam : MonoBehaviour {
 
     [SerializeField]
     private Bullet bullet;
+
+    private List<Enemy> enemies;
 
     private float lerpStartTime;
 
@@ -49,13 +52,19 @@ public class BulletCam : MonoBehaviour {
                 oldCamera.gameObject.SetActive(true);
                 bullet.transform.localPosition = bulletStartingPosition;
                 GameManager.main.GetKills(numberOfHits);
+
+                
+                foreach (Enemy enemy in enemies)
+                {
+                    enemy.enableRagdoll();
+                }
             }
         }
     }
 
     private int numberOfHits = 0;
 
-    public void StartCam(Vector3 target, Vector3 direction, int numberOfHits)
+    public void StartCam(Vector3 start, Vector3 target, Vector3 direction, int numberOfHits, List<Enemy> enemies)
     {
         if (!bulletOnTheMove)
         {
@@ -63,11 +72,13 @@ public class BulletCam : MonoBehaviour {
             GameManager.main.SetCameraControlState(false);
             oldCamera.gameObject.SetActive(false);
             bullet.transform.forward = direction;
-            bullet.transform.localPosition = Vector3.zero;
+            //bullet.transform.localPosition = Vector3.zero;
+            bullet.transform.position = start;
             bullet.gameObject.SetActive(true);
             startPosition = bullet.transform.position;
             targetPosition = target;
             bulletOnTheMove = true;
+            this.enemies = enemies;
             
             lerpStartTime = Time.unscaledTime;
             Time.timeScale = 0f;

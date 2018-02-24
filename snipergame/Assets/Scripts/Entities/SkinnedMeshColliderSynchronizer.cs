@@ -42,4 +42,9 @@ public class SkinnedMeshColliderSynchronizer : MonoBehaviour
     {
         meshCollider.enabled = false;
     }
+
+    public Enemy GetEnemy()
+    {
+        return meshRenderer.GetComponent<Enemy>();
+    }
 }

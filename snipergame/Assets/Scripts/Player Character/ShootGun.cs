@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShootGun : MonoBehaviour
 {
@@ -84,6 +85,9 @@ public class ShootGun : MonoBehaviour
         {
             RaycastHit[] complexHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, complexEnemyLayer);
             Vector3 furthestPoint = Vector3.zero;
+
+            List<Enemy> enemiesHit = new List<Enemy>();
+
             foreach (RaycastHit hitInfo in complexHits)
             {
                 if (GameManager.main.DebugMode)
@@ -99,14 +103,21 @@ public class ShootGun : MonoBehaviour
                 {
                     furthestPoint = hitInfo.point;
                 }
+                Enemy enemy = hitInfo.transform.GetComponentInParent<Enemy>();
+                if (enemy != null)
+                {
+                    enemiesHit.Add(enemy);
+                }
                 // handle hit logic here
                 
             }
             if (complexHits.Length > 0)
             {
+                furthestPoint = furthestPoint + aim.forward.normalized * 10;
+
                 GameManager.main.SetScopeVisibility(false);
                 //GameManager.main.SetGunVisibility(false);
-                GameManager.main.StartBulletCam(furthestPoint, aim.forward, complexHits.Length);
+                GameManager.main.StartBulletCam(shootOrigin, furthestPoint, aim.forward, complexHits.Length, enemiesHit);
             }
             foreach (RaycastHit hitInfo in simpleHits)
             {
