@@ -30,4 +30,12 @@ public class UIManager : MonoBehaviour {
         hudBullets.SetInt(count);
     }
 
+    [SerializeField]
+    private LevelTitle levelTitle;
+
+    public void ShowLevelTitle(string title)
+    {
+        levelTitle.Show(title);
+    }
+
 }

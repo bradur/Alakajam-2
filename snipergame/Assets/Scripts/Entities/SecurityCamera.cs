@@ -1,6 +1,6 @@
 // Date   : 24.02.2018 09:17
 // Project: snipergame
-// Author : bradur
+// Author : M2tias
 
 using UnityEngine;
 using System.Collections;
@@ -15,6 +15,10 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField]
     [Range(0, 1)]
     private float rotationSpeed;
+
+    [SerializeField]
+    private Camera camera;
+    public Camera Camera { get { return camera; } }
 
     private Vector3 originalRotation;
     private int direction = 1;

@@ -6,7 +6,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public static GameManager main;
 
@@ -29,7 +30,14 @@ public class GameManager : MonoBehaviour {
     private LevelManager levelManagerPrefab;
 
     [SerializeField]
+    private SecurityCameraManager securityCameraManagerPrefab;
+
+    [SerializeField]
     private Transform playerTransform;
+
+    [SerializeField]
+    private Camera mainCamera;
+    public Camera MainCamera { get { return mainCamera; } }
 
     [Header("Settings")]
     // enable print debugs
@@ -41,7 +49,8 @@ public class GameManager : MonoBehaviour {
 
     private LevelManager levelManager;
 
-    void Start () {
+    void Start()
+    {
         KeyManager keyManager = Instantiate(keyManagerPrefab);
         keyManager.transform.SetParent(transform, false);
 
@@ -54,11 +63,15 @@ public class GameManager : MonoBehaviour {
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
 
+        SecurityCameraManager securityCameraManager = Instantiate(securityCameraManagerPrefab);
+        securityCameraManager.transform.SetParent(transform, false);
+
         levelManager.LoadNextLevel();
     }
 
-    void Update () {
-    
+    void Update()
+    {
+
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -92,4 +105,8 @@ public class GameManager : MonoBehaviour {
         return false;
     }
 
+    public SecurityCamera GetSecurityCamera(int cam)
+    {
+        return levelManager.GetSecurityCamera(cam);
+    }
 }
