@@ -19,7 +19,12 @@ public class Level : MonoBehaviour
     [SerializeField]
     private string title = "";
 
+    [SerializeField]
+    private float numberOfEnemies = 2;
+
     private string debugPrefix = "<b>[<color=purple>Level</color>]:</b>";
+
+    private bool levelFinished = false;
 
     [SerializeField]
     private List<SecurityCamera> securityCameras = new List<SecurityCamera>();
@@ -65,5 +70,19 @@ public class Level : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void GetAKill()
+    {
+        if(numberOfEnemies > 0)
+        {
+            numberOfEnemies -= 1;
+            //UIManager.main.SetEnemyCount(numberOfEnemies);
+        }
+        else
+        {
+            //UIManager.main.LevelFinished();
+            GameManager.main.LoadNextLevel();
+        }
     }
 }

@@ -147,4 +147,14 @@ public class GameManager : MonoBehaviour
     {
         return levelManager.GetSecurityCamera(cam);
     }
+
+    public void LoadNextLevel()
+    {
+        levelManager.LoadNextLevel();
+    }
+
+    public void GetAKill()
+    {
+        levelManager.GetAKill();
+    }
 }

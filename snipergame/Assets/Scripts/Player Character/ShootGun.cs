@@ -100,6 +100,7 @@ public class ShootGun : MonoBehaviour
                     furthestPoint = hitInfo.point;
                 }
                 // handle hit logic here
+                GameManager.main.GetAKill();
             }
             if (complexHits.Length > 0)
             {

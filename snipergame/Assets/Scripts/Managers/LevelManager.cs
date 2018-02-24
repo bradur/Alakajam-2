@@ -62,8 +62,8 @@ public class LevelManager : MonoBehaviour
         currentLevel.Load();
         currentLevel.SecurityCameras.ForEach(x => x.enabled = false);
         currentLevel.SecurityCameras.ForEach(x => x.gameObject.SetActive(false));
-        currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().enabled = false);
-        currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().gameObject.SetActive(false));
+        //currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().enabled = false);
+        //currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().gameObject.SetActive(false));
     }
 
     public SecurityCamera GetSecurityCamera(int cam)
@@ -81,5 +81,10 @@ public class LevelManager : MonoBehaviour
         {
             return currentLevel.SecurityCameras[cam-1];
         }
+    }
+
+    public void GetAKill()
+    {
+        currentLevel.GetAKill();
     }
 }
