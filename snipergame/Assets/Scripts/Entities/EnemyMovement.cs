@@ -41,6 +41,24 @@ public class EnemyMovement : MonoBehaviour
             if ((Time.time - startWaitingTime) >= waitTime)
             {
                 waiting = false;
+                waitTime = currentMarker.WaitTime;
+            }
+
+            angleSpeed += (angleBetween / waitTime) * Time.deltaTime;
+            Debug.Log(angleSpeed);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
+            Quaternion newQ = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newQ, Time.deltaTime*(2/waitTime));
+        }
+        else
+        {
+            Vector2 newPos = Vector2.MoveTowards(xz(transform.position), xz(currentMarker.transform.position), 0.1f);
+            this.transform.position = xzToVec3(newPos, transform.position);
+
+            if (Vector2.Distance(xz(transform.position), xz(currentMarker.transform.position)) < 0.1f)
+            {
+                waiting = true;
+                startWaitingTime = Time.time;
                 if (prevPrevMarker == null)
                 {
                     if (prevMarker == null)
@@ -63,24 +81,7 @@ public class EnemyMovement : MonoBehaviour
 
                 angleBetween = Mathf.Deg2Rad * Vector3.Angle(transform.position, currentMarker.transform.position);
 
-                waitTime = currentMarker.WaitTime;
                 angleSpeed = 0;
-            }
-
-            angleSpeed += (angleBetween / waitTime) * Time.deltaTime;
-            Debug.Log(angleSpeed);
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
-            transform.rotation = Quaternion.LookRotation(newDir);
-        }
-        else
-        {
-            Vector2 newPos = Vector2.MoveTowards(xz(transform.position), xz(currentMarker.transform.position), 0.1f);
-            this.transform.position = xzToVec3(newPos, transform.position);
-
-            if (Vector2.Distance(xz(transform.position), xz(currentMarker.transform.position)) < 0.1f)
-            {
-                waiting = true;
-                startWaitingTime = Time.time;
             }
         }
     }
