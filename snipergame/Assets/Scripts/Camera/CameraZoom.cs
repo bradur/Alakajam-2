@@ -40,6 +40,11 @@ public class CameraZoom : MonoBehaviour
     private Camera targetCamera;
     private Vector2 originalSensitivity;
 
+    [SerializeField]
+    private DrawLine drawVerticalLine;
+    [SerializeField]
+    private DrawLine drawHorizontalLine;
+
     void Start()
     {
         simpleSmoothMouseLook = GetComponent<SimpleSmoothMouseLook>();
@@ -68,6 +73,9 @@ public class CameraZoom : MonoBehaviour
             if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ToggleScope))
             {
                 zoomedIn = !zoomedIn;
+                UIManager.main.SetScopeVisibility(zoomedIn);
+                drawVerticalLine.SetVisibility(zoomedIn);
+                drawHorizontalLine.SetVisibility(zoomedIn);
             }
         }
 

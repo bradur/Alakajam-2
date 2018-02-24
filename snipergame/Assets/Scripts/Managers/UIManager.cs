@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Color colorVariable;
     [SerializeField]
-    private Image imgComponent;
+    private Image cursor;
 
     [SerializeField]
     private SimpleHUDElement hudBullets;
@@ -36,6 +36,15 @@ public class UIManager : MonoBehaviour {
     public void ShowLevelTitle(string title)
     {
         levelTitle.Show(title);
+    }
+
+    [SerializeField]
+    private HUDScope hudScope;
+
+    public void SetScopeVisibility(bool visible)
+    {
+        hudScope.SetVisibility(visible);
+        cursor.enabled = !visible;
     }
 
 }

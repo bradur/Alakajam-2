@@ -60,6 +60,7 @@ public class Level : MonoBehaviour
     {
         if (numberOfBullets > 0)
         {
+            numberOfBullets -= 1;
             UIManager.main.SetBulletCount(numberOfBullets);
             return true;
         }

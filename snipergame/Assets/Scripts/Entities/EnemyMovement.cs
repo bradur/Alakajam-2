@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
             }
 
             angleSpeed += (angleBetween / waitTime) * Time.deltaTime;
-            Debug.Log(angleSpeed);
+
             Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
