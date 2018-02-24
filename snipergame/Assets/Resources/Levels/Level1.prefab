@@ -1583,7 +1583,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1303059189922194}
-  m_LocalRotation: {x: 0.68853265, y: -0.60783666, z: -0.26789522, w: -0.29101497}
+  m_LocalRotation: {x: 0.6885326, y: -0.6078366, z: -0.2678952, w: -0.29101494}
   m_LocalPosition: {x: -0.17684898, y: -0.00000003723835, z: 0.000000006242772}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -1611,7 +1611,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626493811654462}
-  m_LocalRotation: {x: 0.68853265, y: -0.60783666, z: -0.26789522, w: -0.29101497}
+  m_LocalRotation: {x: 0.6885326, y: -0.6078366, z: -0.2678952, w: -0.29101494}
   m_LocalPosition: {x: -0.17684898, y: -0.00000003723835, z: 0.000000006242772}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -2827,7 +2827,7 @@ MonoBehaviour:
   - {fileID: 114774629803703048}
   - {fileID: 114578990523105962}
   network: {fileID: 114115975585211804}
-  waitTime: 0
+  waitTime: 0.5
 --- !u!114 &114059051552939008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2887,7 +2887,7 @@ MonoBehaviour:
   - {fileID: 114578990523105962}
   - {fileID: 114917866116400128}
   network: {fileID: 114115975585211804}
-  waitTime: 0
+  waitTime: 0.5
 --- !u!114 &114377528791942242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2936,7 +2936,7 @@ MonoBehaviour:
   - {fileID: 114053638968253184}
   - {fileID: 114241519013734842}
   network: {fileID: 114115975585211804}
-  waitTime: 0
+  waitTime: 0.5
 --- !u!114 &114643752634607466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3048,6 +3048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfBullets: 10
   playerPosition: {fileID: 4531856000027616}
+  title: 
   securityCameras:
   - {fileID: 114643752634607466}
   - {fileID: 114657470336586692}
@@ -3066,7 +3067,7 @@ MonoBehaviour:
   - {fileID: 114917866116400128}
   - {fileID: 114053638968253184}
   network: {fileID: 114115975585211804}
-  waitTime: 0
+  waitTime: 0.5
 --- !u!114 &114906600322529840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3082,7 +3083,7 @@ MonoBehaviour:
   - {fileID: 114426779745789220}
   - {fileID: 114059051552939008}
   network: {fileID: 114377528791942242}
-  waitTime: 1
+  waitTime: 4
 --- !u!114 &114917866116400128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3098,7 +3099,7 @@ MonoBehaviour:
   - {fileID: 114774629803703048}
   - {fileID: 114241519013734842}
   network: {fileID: 114115975585211804}
-  waitTime: 0
+  waitTime: 0.5
 --- !u!114 &114975973766888044
 MonoBehaviour:
   m_ObjectHideFlags: 1
