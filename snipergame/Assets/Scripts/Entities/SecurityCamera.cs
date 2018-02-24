@@ -16,6 +16,10 @@ public class SecurityCamera : MonoBehaviour
     [Range(0, 1)]
     private float rotationSpeed;
 
+    [SerializeField]
+    private Camera camera;
+    public Camera Camera { get { return camera; } }
+
     private Vector3 originalRotation;
     private int direction = 1;
     private float t = 0.5f;

@@ -61,4 +61,21 @@ public class LevelManager : MonoBehaviour
         currentLevel.transform.SetParent(transform, false);
         currentLevel.Load();
     }
+
+    public SecurityCamera GetSecurityCamera(int cam)
+    {
+        
+        if (currentLevel.SecurityCameras.Count == 0)
+        {
+            return null;
+        }
+        else if (cam > currentLevel.SecurityCameras.Count)
+        {
+            return currentLevel.SecurityCameras[0];
+        }
+        else
+        {
+            return currentLevel.SecurityCameras[cam-1];
+        }
+    }
 }

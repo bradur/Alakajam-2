@@ -20,6 +20,11 @@ public class EnemyMovement : MonoBehaviour
     private WaypointMarker prevPrevMarker;
     private WaypointMarker currentMarker;
 
+    //turning
+    private Vector3 direction;
+    private float angleBetween;
+    private float angleSpeed;
+
     void Start()
     {
     }
@@ -54,8 +59,18 @@ public class EnemyMovement : MonoBehaviour
                     prevMarker = currentMarker;
                 }
                 currentMarker = currentMarker.GetNeighbours().Where(x => x != prevMarker && x != prevPrevMarker).First();
+                direction = currentMarker.transform.position - transform.position;
+
+                angleBetween = Mathf.Deg2Rad * Vector3.Angle(transform.position, currentMarker.transform.position);
+
                 waitTime = currentMarker.WaitTime;
+                angleSpeed = 0;
             }
+
+            angleSpeed += (angleBetween / waitTime) * Time.deltaTime;
+            Debug.Log(angleSpeed);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
+            transform.rotation = Quaternion.LookRotation(newDir);
         }
         else
         {

@@ -22,8 +22,8 @@ public class Level : MonoBehaviour
     private string debugPrefix = "<b>[<color=purple>Level</color>]:</b>";
 
     [SerializeField]
-    private List<GameObject> securityCameras = new List<GameObject>();
-    public List<GameObject> SecurityCameras { get { return securityCameras; } }
+    private List<SecurityCamera> securityCameras = new List<SecurityCamera>();
+    public List<SecurityCamera> SecurityCameras { get { return securityCameras; } }
 
     public void Load()
     {
