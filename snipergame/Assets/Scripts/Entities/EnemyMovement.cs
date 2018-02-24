@@ -88,17 +88,6 @@ public class EnemyMovement : MonoBehaviour
             Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
-        else
-        {
-            Vector2 newPos = Vector2.MoveTowards(xz(transform.position), xz(currentMarker.transform.position), 0.1f);
-            this.transform.position = xzToVec3(newPos, transform.position);
-
-            if (Vector2.Distance(xz(transform.position), xz(currentMarker.transform.position)) < 0.1f)
-            {
-                waiting = true;
-                startWaitingTime = Time.time;
-            }
-        }
     }
 
     private Vector2 xz(Vector3 vec)
