@@ -25,6 +25,11 @@ public class EnemyMovement : MonoBehaviour
     private float angleBetween;
     private float angleSpeed;
 
+    [Range(0.5f, 10f)]
+    [SerializeField]
+    private float moveSpeed = 1f;
+
+
     void Start()
     {
     }
@@ -51,7 +56,11 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            Vector2 newPos = Vector2.MoveTowards(xz(transform.position), xz(currentMarker.transform.position), 0.1f);
+            Vector2 newPos = Vector2.MoveTowards(
+                xz(transform.position),
+                xz(currentMarker.transform.position),
+                moveSpeed * Time.deltaTime
+            );
             this.transform.position = xzToVec3(newPos, transform.position);
 
             if (Vector2.Distance(xz(transform.position), xz(currentMarker.transform.position)) < 0.1f)

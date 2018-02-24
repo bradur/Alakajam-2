@@ -20,8 +20,8 @@ public class ShootGun : MonoBehaviour
     private Vector3 shootOrigin;
 
     [SerializeField]
-    [Range(10f, 100f)]
-    private float maxRayLength = 50f;
+    [Range(10f, 1000f)]
+    private float maxRayLength = 500f;
 
     [SerializeField]
     private Transform aim;
@@ -37,6 +37,11 @@ public class ShootGun : MonoBehaviour
     void Start()
     {
         timeSinceLastShot = minShootInterval;
+        
+    }
+
+    public void UpdateOrigin ()
+    {
         shootOrigin = shootOriginTransform.position;
     }
 

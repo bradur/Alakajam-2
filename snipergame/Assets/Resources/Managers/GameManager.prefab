@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 1473302076483554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 4003098895806850}
   m_RootOrder: 2
@@ -537,6 +537,7 @@ MonoBehaviour:
   securityCameraManagerPrefab: {fileID: 114009636120216268, guid: 7579a1e77f9cb3745a1735f8f329b414,
     type: 2}
   playerTransform: {fileID: 4707435537717590}
+  shootGun: {fileID: 114281047488295120}
   mainCamera: {fileID: 20388989046237832}
   debugMode: 1
 --- !u!114 &114113689744758108
@@ -580,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minShootInterval: 1
   shootOriginTransform: {fileID: 4199209089417290}
-  maxRayLength: 50
+  maxRayLength: 500
   aim: {fileID: 4199209089417290}
   primitiveEnemyLayer:
     serializedVersion: 2

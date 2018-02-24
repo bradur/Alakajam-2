@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     private Transform playerTransform;
 
     [SerializeField]
+    private ShootGun shootGun;
+
+    [SerializeField]
     private Camera mainCamera;
     public Camera MainCamera { get { return mainCamera; } }
 
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour
             );
         }
         playerTransform.position = position;
+        shootGun.UpdateOrigin();
     }
 
     public bool SpendBullet()
