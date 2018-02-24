@@ -105,7 +105,10 @@ public class EnemyMovement : MonoBehaviour
 
 
             Vector3 newDir = Vector3.RotateTowards(transform.up, direction, angleSpeed*20, 0);
-            transform.rotation = Quaternion.LookRotation(newDir);
+            if (newDir.magnitude > 0.05f)
+            {
+                transform.rotation = Quaternion.LookRotation(newDir);
+            }
             
             if ((Time.time - lastFootPrint) >= footPrintDelay)
             {
