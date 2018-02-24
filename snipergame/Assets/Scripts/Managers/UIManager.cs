@@ -38,6 +38,11 @@ public class UIManager : MonoBehaviour {
         levelTitle.Show(title);
     }
 
+    public void HideLevelTitle()
+    {
+        levelTitle.Hide();
+    }
+
     [SerializeField]
     private HUDScope hudScope;
 

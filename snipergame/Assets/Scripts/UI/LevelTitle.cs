@@ -27,4 +27,9 @@ public class LevelTitle : MonoBehaviour {
         animator.SetTrigger("Show");
     }
 
+    public void Hide()
+    {
+        animator.SetTrigger("Hide");
+    }
+
 }

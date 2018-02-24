@@ -352,7 +352,8 @@ Transform:
   m_LocalRotation: {x: 0.07744121, y: -0, z: -0, w: 0.99699694}
   m_LocalPosition: {x: -0.91, y: 0.923, z: -3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4377476427634256}
   m_Father: {fileID: 4700656837790818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.883, y: 0, z: 0}
@@ -429,7 +430,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003452651398790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -437,7 +438,7 @@ Transform:
   - {fileID: 4812163641549096}
   - {fileID: 4536295912595542}
   - {fileID: 4290153399822208}
-  m_Father: {fileID: 4546625645249514}
+  m_Father: {fileID: 4142118996527596}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4439659567584930
@@ -467,7 +468,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4546625645249514}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4521623264535858
 Transform:
@@ -505,7 +506,6 @@ Transform:
   m_LocalPosition: {x: -0.91, y: 0.923, z: -3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4377476427634256}
   - {fileID: 4457550259117114}
   m_Father: {fileID: 4700656837790818}
   m_RootOrder: 1
@@ -616,7 +616,7 @@ Camera:
   field of view: 80
   orthographic: 0
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

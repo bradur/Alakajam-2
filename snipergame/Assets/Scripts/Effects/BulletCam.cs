@@ -42,7 +42,6 @@ public class BulletCam : MonoBehaviour {
             Debug.Log(oldCamera.isActiveAndEnabled);
             if (percentageComplete >= 1f)
             {
-                Debug.Log("already!");
                 bullet.gameObject.SetActive(false);
                 GameManager.main.SetCameraControlState(true);
                 bulletOnTheMove = false;
@@ -61,7 +60,6 @@ public class BulletCam : MonoBehaviour {
             
             GameManager.main.SetCameraControlState(false);
             oldCamera.gameObject.SetActive(false);
-            Debug.Log(oldCamera.isActiveAndEnabled);
             bullet.transform.forward = direction;
             bullet.transform.localPosition = Vector3.zero;
             bullet.gameObject.SetActive(true);
