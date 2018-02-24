@@ -1020,6 +1020,8 @@ MonoBehaviour:
     type: 2}
   trailManagerPrefab: {fileID: 114030446375077178, guid: 663d96fe0c38f2847b52df38dd0b5e64,
     type: 2}
+  bulletHoleManagerPrefab: {fileID: 114872540195778988, guid: 185a86fab0a9bd6419c5f443434ce521,
+    type: 2}
   playerTransform: {fileID: 4700656837790818}
   shootGun: {fileID: 114698037930311292}
   bulletCam: {fileID: 114222399543992888}
@@ -1107,6 +1109,9 @@ MonoBehaviour:
   complexEnemyLayer:
     serializedVersion: 2
     m_Bits: 512
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114700407377184734
 MonoBehaviour:
   m_ObjectHideFlags: 1

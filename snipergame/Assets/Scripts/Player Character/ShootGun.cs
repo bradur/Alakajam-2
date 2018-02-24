@@ -33,6 +33,9 @@ public class ShootGun : MonoBehaviour
     [SerializeField]
     private LayerMask complexEnemyLayer;
 
+    [SerializeField]
+    private LayerMask buildingLayer;
+
     private string debugPrefix = "<b>[<color=cyan>Gun</color>]:</b>";
 
     void Start()
@@ -63,6 +66,7 @@ public class ShootGun : MonoBehaviour
     private void Shoot()
     {
         RaycastHit[] simpleHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, primitiveEnemyLayer, QueryTriggerInteraction.Collide);
+        BulletHoleRays();
         foreach (RaycastHit hitInfo in simpleHits)
         {
             if (GameManager.main.DebugMode)
@@ -128,5 +132,55 @@ public class ShootGun : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void BulletHoleRays()
+    {
+        int count = 0;
+        bool goBack = false;
+        RaycastHit[] wallHit = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
+        RaycastHit lastHit = default(RaycastHit);
+        while(wallHit.Length > 0)
+        {
+            RaycastHit firstHit = wallHit[0];
+            Vector3 newOrigin = firstHit.point + aim.forward * 0.01f;
+            Vector3 spawnPoint = firstHit.point - aim.forward * 0.01f;
+            Vector3 normal = firstHit.normal; 
+            BulletHole hole = BulletHoleManager.main.SpawnBulletHole();
+            //hole.transform.LookAt(firstHit.point + firstHit.normal);
+            hole.transform.localRotation = Quaternion.LookRotation(Vector3.up, firstHit.normal);
+            hole.transform.position = spawnPoint;
+            wallHit = Physics.RaycastAll(newOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
+            if(wallHit.Length == 0)
+            {
+                lastHit = firstHit;
+            }
+            count++;
+            goBack = true;
+        }
+
+        if(!goBack)
+        {
+            Debug.Log(count);
+            return;
+        }
+        wallHit = Physics.RaycastAll(lastHit.point+aim.forward*0.1f, (-1*aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
+
+        while(wallHit.Length > 0)
+        {
+            RaycastHit firstHit = wallHit[0];
+            Vector3 newOrigin = firstHit.point - aim.forward * 0.01f;
+            Vector3 spawnPoint = firstHit.point + aim.forward * 0.01f;
+            Vector3 normal = firstHit.normal;
+            BulletHole hole = BulletHoleManager.main.SpawnBulletHole();
+            //hole.transform.LookAt(firstHit.point + firstHit.normal);
+            hole.transform.localRotation = Quaternion.LookRotation(Vector3.up, firstHit.normal);
+            hole.transform.position = spawnPoint;
+            wallHit = Physics.RaycastAll(newOrigin, (-1 * aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
+
+            count++;
+        }
+
+        Debug.Log(count);
     }
 }
