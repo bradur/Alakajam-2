@@ -30,6 +30,15 @@ public class UIManager : MonoBehaviour {
         hudBullets.SetInt(count);
     }
 
+
+    [SerializeField]
+    private SimpleHUDElement hudTargets;
+
+    public void SetTargetCount(int count)
+    {
+        hudTargets.SetInt(count);
+    }
+
     [SerializeField]
     private LevelTitle levelTitle;
 
@@ -51,5 +60,5 @@ public class UIManager : MonoBehaviour {
         hudScope.SetVisibility(visible);
         cursor.enabled = !visible;
     }
-
+    
 }

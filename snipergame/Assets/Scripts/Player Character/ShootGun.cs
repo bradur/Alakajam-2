@@ -100,13 +100,13 @@ public class ShootGun : MonoBehaviour
                     furthestPoint = hitInfo.point;
                 }
                 // handle hit logic here
-                GameManager.main.GetAKill();
+                
             }
             if (complexHits.Length > 0)
             {
                 GameManager.main.SetScopeVisibility(false);
                 //GameManager.main.SetGunVisibility(false);
-                GameManager.main.StartBulletCam(furthestPoint, aim.forward);
+                GameManager.main.StartBulletCam(furthestPoint, aim.forward, complexHits.Length);
             }
             foreach (RaycastHit hitInfo in simpleHits)
             {

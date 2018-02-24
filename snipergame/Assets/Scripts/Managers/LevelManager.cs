@@ -47,6 +47,9 @@ public class LevelManager : MonoBehaviour
         {
             LoadLevel(currentLevelNumber);
             return true;
+        } else
+        {
+            Debug.Log("The end!");
         }
         return false;
     }
@@ -83,8 +86,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void GetAKill()
+    public void GetKills(int number)
     {
-        currentLevel.GetAKill();
+        currentLevel.GetKills(number);
     }
 }

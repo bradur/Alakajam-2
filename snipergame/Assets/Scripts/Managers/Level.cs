@@ -20,7 +20,7 @@ public class Level : MonoBehaviour
     private string title = "";
 
     [SerializeField]
-    private float numberOfEnemies = 2;
+    private int numberOfEnemies = 2;
 
     private string debugPrefix = "<b>[<color=purple>Level</color>]:</b>";
 
@@ -36,6 +36,7 @@ public class Level : MonoBehaviour
         {
             title = gameObject.name;
         }
+        UIManager.main.SetTargetCount(numberOfEnemies);
         UIManager.main.ShowLevelTitle(title);
         if (playerPosition != null)
         {
@@ -72,17 +73,16 @@ public class Level : MonoBehaviour
         return false;
     }
 
-    public void GetAKill()
+    public void GetKills(int number)
     {
-        if(numberOfEnemies > 0)
+        numberOfEnemies -= number;
+        if (numberOfEnemies <= 0)
         {
-            numberOfEnemies -= 1;
-            //UIManager.main.SetEnemyCount(numberOfEnemies);
-        }
-        else
-        {
-            //UIManager.main.LevelFinished();
+            numberOfEnemies = 0;
+            UIManager.main.SetTargetCount(numberOfEnemies);
             GameManager.main.LoadNextLevel();
+            return;
         }
+        UIManager.main.SetTargetCount(numberOfEnemies);
     }
 }

@@ -106,9 +106,9 @@ public class GameManager : MonoBehaviour
         cameraZoom.SetScopeVisibility(visibility);
     }
 
-    public void StartBulletCam(Vector3 target, Vector3 direction)
+    public void StartBulletCam(Vector3 target, Vector3 direction, int numTargets)
     {
-        bulletCam.StartCam(target, direction);
+        bulletCam.StartCam(target, direction, numTargets);
     }
 
     public void SetPlayerPosition(Vector3 position)
@@ -153,8 +153,9 @@ public class GameManager : MonoBehaviour
         levelManager.LoadNextLevel();
     }
 
-    public void GetAKill()
+    public void GetKills(int number)
     {
-        levelManager.GetAKill();
+        levelManager.GetKills(number);
+
     }
 }

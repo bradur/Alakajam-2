@@ -48,16 +48,18 @@ public class BulletCam : MonoBehaviour {
                 Time.timeScale = 1f;
                 oldCamera.gameObject.SetActive(true);
                 bullet.transform.localPosition = bulletStartingPosition;
-
+                GameManager.main.GetKills(numberOfHits);
             }
         }
     }
 
-    public void StartCam(Vector3 target, Vector3 direction)
+    private int numberOfHits = 0;
+
+    public void StartCam(Vector3 target, Vector3 direction, int numberOfHits)
     {
         if (!bulletOnTheMove)
         {
-            
+            this.numberOfHits = numberOfHits;
             GameManager.main.SetCameraControlState(false);
             oldCamera.gameObject.SetActive(false);
             bullet.transform.forward = direction;
