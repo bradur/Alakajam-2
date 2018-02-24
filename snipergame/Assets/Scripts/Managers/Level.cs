@@ -16,6 +16,9 @@ public class Level : MonoBehaviour
     [SerializeField]
     private Transform playerPosition;
 
+    [SerializeField]
+    private string title = "";
+
     private string debugPrefix = "<b>[<color=purple>Level</color>]:</b>";
 
     [SerializeField]
@@ -24,7 +27,11 @@ public class Level : MonoBehaviour
 
     public void Load()
     {
-
+        if (title == "")
+        {
+            title = gameObject.name;
+        }
+        UIManager.main.ShowLevelTitle(title);
         if (playerPosition != null)
         {
             GameManager.main.SetPlayerPosition(playerPosition.position);
