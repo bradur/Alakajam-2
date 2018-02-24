@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
     private Camera mainCamera;
     public Camera MainCamera { get { return mainCamera; } }
 
+    [SerializeField]
+    private SimpleSmoothMouseLook mouseLook;
+    
+
     [Header("Settings")]
     // enable print debugs
     [SerializeField]
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour
     //
     public void SetCameraControlState(bool enabled)
     {
+        mouseLook.enabled = enabled;
         cameraZoom.enabled = enabled;
         shootGun.enabled = enabled;
     }

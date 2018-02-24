@@ -1230,8 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4181155527558040}
   - component: {fileID: 20683237854890850}
-  - component: {fileID: 124688640347423700}
-  - component: {fileID: 81082186762658714}
+  - component: {fileID: 114815842309857378}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2650,7 +2649,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853460920073978}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -3590,13 +3589,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81082186762658714
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853460920073978}
-  m_Enabled: 0
 --- !u!95 &95139559248246134
 Animator:
   serializedVersion: 3
@@ -3866,6 +3858,7 @@ MonoBehaviour:
   network: {fileID: 114745624890770326}
   prevMarker: {fileID: 0}
   waitTime: 2
+  footPrintDelay: 0.2
   moveSpeed: 0.64
 --- !u!114 &114396738464712032
 MonoBehaviour:
@@ -3881,6 +3874,7 @@ MonoBehaviour:
   numberOfBullets: 10
   playerPosition: {fileID: 4190451884885706}
   title: First mission
+  numberOfEnemies: 2
   securityCameras:
   - {fileID: 114810186246300440}
 --- !u!114 &114706010968705438
@@ -3913,6 +3907,7 @@ MonoBehaviour:
   network: {fileID: 114750908852263306}
   prevMarker: {fileID: 0}
   waitTime: 2
+  footPrintDelay: 0.2
   moveSpeed: 1
 --- !u!114 &114724746703869590
 MonoBehaviour:
@@ -3988,6 +3983,23 @@ MonoBehaviour:
   rotationSpan: 44.2
   rotationSpeed: 0.24
   camera: {fileID: 20683237854890850}
+--- !u!114 &114815842309857378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853460920073978}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57744762d9079934292f57896d8193e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_LookAt: {fileID: 0}
 --- !u!114 &114824802732182502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4036,13 +4048,6 @@ MonoBehaviour:
   - {fileID: 114840979423606502}
   network: {fileID: 114745624890770326}
   waitTime: 0
---- !u!124 &124688640347423700
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853460920073978}
-  m_Enabled: 1
 --- !u!137 &137482973080763420
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

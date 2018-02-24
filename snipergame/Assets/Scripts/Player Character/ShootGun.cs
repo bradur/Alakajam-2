@@ -67,6 +67,7 @@ public class ShootGun : MonoBehaviour
     {
         RaycastHit[] simpleHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, primitiveEnemyLayer, QueryTriggerInteraction.Collide);
         BulletHoleRays();
+        Vector3 furthestPoint = Vector3.zero;
         foreach (RaycastHit hitInfo in simpleHits)
         {
             if (GameManager.main.DebugMode)
@@ -83,12 +84,16 @@ public class ShootGun : MonoBehaviour
             {
                 enemy.GunRayCastHit();
             }
+            if (furthestPoint.magnitude < hitInfo.point.magnitude)
+            {
+                furthestPoint = hitInfo.point;
+            }
         }
         // if primitive colliders were hit, recast ray
         if (simpleHits.Length > 0)
         {
             RaycastHit[] complexHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, complexEnemyLayer);
-            Vector3 furthestPoint = Vector3.zero;
+            
 
             List<Enemy> enemiesHit = new List<Enemy>();
 
@@ -103,10 +108,6 @@ public class ShootGun : MonoBehaviour
                         hitInfo.point
                     ));
                 }
-                if (furthestPoint.magnitude < hitInfo.point.magnitude)
-                {
-                    furthestPoint = hitInfo.point;
-                }
                 Enemy enemy = hitInfo.transform.GetComponentInParent<Enemy>();
                 if (enemy != null)
                 {
@@ -115,14 +116,16 @@ public class ShootGun : MonoBehaviour
                 // handle hit logic here
                 
             }
-            if (complexHits.Length > 0)
+            float overShoot = 0.5f;
+            if (complexHits.Length == 0)
             {
-                furthestPoint = furthestPoint + aim.forward.normalized * 10;
-
-                GameManager.main.SetScopeVisibility(false);
-                //GameManager.main.SetGunVisibility(false);
-                GameManager.main.StartBulletCam(shootOrigin, furthestPoint, aim.forward, complexHits.Length, enemiesHit);
+                overShoot = 5f;
             }
+            furthestPoint = furthestPoint + aim.forward.normalized * overShoot;
+
+            GameManager.main.SetScopeVisibility(false);
+            GameManager.main.StartBulletCam(shootOrigin, furthestPoint, aim.forward, complexHits.Length, enemiesHit);
+
             foreach (RaycastHit hitInfo in simpleHits)
             {
                 Enemy enemy = hitInfo.collider.GetComponent<Enemy>();

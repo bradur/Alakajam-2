@@ -74,8 +74,10 @@ public class CameraZoom : MonoBehaviour
         drawVerticalLine.SetVisibility(zoomedIn);
         drawHorizontalLine.SetVisibility(zoomedIn);
         SetGunVisibility(!zoomedIn);
+        GetComponent<Camera>().enabled = visibility;
         if (zoomedIn)
         {
+            
             UIManager.main.HideLevelTitle();
         }
     }

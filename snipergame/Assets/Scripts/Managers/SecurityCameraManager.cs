@@ -42,33 +42,25 @@ public class SecurityCameraManager : MonoBehaviour
         }
     }
 
-    private void SetCamera(SecurityCamera cam)
+    private SecurityCamera currentSecurityCamera = null;
+
+    private void SetCamera(SecurityCamera securityCamera)
     {
-        Camera nextCam;
-        Camera prevCam = null;
-        if (cam == null)
+        if (currentSecurityCamera != null)
         {
-            nextCam = GameManager.main.MainCamera;
+            currentSecurityCamera.Camera.enabled = false;
+        }
+        if (securityCamera != null)
+        {
+            GameManager.main.SetScopeVisibility(false);
+            currentSecurityCamera = securityCamera;
+            currentSecurityCamera.Camera.enabled = true;
+            GameManager.main.SetCameraControlState(false);
         }
         else
         {
-            nextCam = cam.Camera;
-        }
-
-        if(currentActiveCamera != nextCam)
-        {
-            prevCam = currentActiveCamera;
-        }
-
-        currentActiveCamera = nextCam;
-        currentActiveCamera.enabled = true;
-        currentActiveCamera.gameObject.SetActive(true);
-        currentActiveCamera.transform.parent.gameObject.SetActive(true);
-        if (prevCam != null)
-        {
-            prevCam.enabled = false;
-            prevCam.gameObject.SetActive(false);
-            prevCam.transform.parent.gameObject.SetActive(false);
+            GameManager.main.SetCameraControlState(true);
         }
     }
+
 }

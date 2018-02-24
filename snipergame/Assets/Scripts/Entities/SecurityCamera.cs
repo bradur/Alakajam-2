@@ -70,6 +70,7 @@ public class SecurityCamera : MonoBehaviour
         Quaternion newAngle = Quaternion.Euler(components);
         transform.localRotation = newAngle;
     }
+
 }
 
 
