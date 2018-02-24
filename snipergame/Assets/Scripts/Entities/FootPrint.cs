@@ -45,7 +45,6 @@ public class FootPrint : MonoBehaviour
             Color c = renderer.materials[0].color;
             Color nc = new Color(c.r, c.g, c.b, fadeout_coef);
             renderer.materials[0].color = nc;
-            Debug.Log(fadeout_coef);
         }
     }
 

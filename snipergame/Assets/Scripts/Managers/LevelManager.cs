@@ -60,6 +60,10 @@ public class LevelManager : MonoBehaviour
         currentLevel = Instantiate(levels[levelNumber]);
         currentLevel.transform.SetParent(transform, false);
         currentLevel.Load();
+        currentLevel.SecurityCameras.ForEach(x => x.enabled = false);
+        currentLevel.SecurityCameras.ForEach(x => x.gameObject.SetActive(false));
+        currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().enabled = false);
+        currentLevel.SecurityCameras.ForEach(x => x.GetComponent<Camera>().gameObject.SetActive(false));
     }
 
     public SecurityCamera GetSecurityCamera(int cam)

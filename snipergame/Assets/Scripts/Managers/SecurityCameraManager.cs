@@ -16,6 +16,7 @@ public class SecurityCameraManager : MonoBehaviour
 
     void Update()
     {
+        SetCamera(null);
         if (KeyManager.main != null)
         {
             if (KeyManager.main.GetKey(KeyTriggeredAction.ShowCameraOne))
@@ -43,17 +44,31 @@ public class SecurityCameraManager : MonoBehaviour
 
     private void SetCamera(SecurityCamera cam)
     {
-        currentActiveCamera.enabled = false;
-
+        Camera nextCam;
+        Camera prevCam = null;
         if (cam == null)
         {
-            currentActiveCamera = GameManager.main.MainCamera;
+            nextCam = GameManager.main.MainCamera;
         }
         else
         {
-            currentActiveCamera = cam.Camera;
+            nextCam = cam.Camera;
         }
 
+        if(currentActiveCamera != nextCam)
+        {
+            prevCam = currentActiveCamera;
+        }
+
+        currentActiveCamera = nextCam;
         currentActiveCamera.enabled = true;
+        currentActiveCamera.gameObject.SetActive(true);
+        currentActiveCamera.transform.parent.gameObject.SetActive(true);
+        if (prevCam != null)
+        {
+            prevCam.enabled = false;
+            prevCam.gameObject.SetActive(false);
+            prevCam.transform.parent.gameObject.SetActive(false);
+        }
     }
 }
