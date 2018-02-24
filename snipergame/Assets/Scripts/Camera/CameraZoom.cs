@@ -6,9 +6,11 @@ using UnityEngine;
 using System.Collections;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(SimpleSmoothMouseLook))]
 public class CameraZoom : MonoBehaviour
 {
 
+    private SimpleSmoothMouseLook simpleSmoothMouseLook;
 
     [SerializeField]
     [Range(40, 120)]
@@ -22,6 +24,9 @@ public class CameraZoom : MonoBehaviour
     [Range(0, 90)]
     private float minZoomedInFov = 30;
 
+    [SerializeField]
+    private Vector2 sensitivityChangeFromFov = Vector3.one;
+
     // when zoomed in, zoomedInFov is applied
     [SerializeField]
     private bool zoomedIn = false;
@@ -33,16 +38,23 @@ public class CameraZoom : MonoBehaviour
     private int scopedZoomSteps = 5;
 
     private Camera targetCamera;
+    private Vector2 originalSensitivity;
 
     void Start()
     {
+        simpleSmoothMouseLook = GetComponent<SimpleSmoothMouseLook>();
+        originalSensitivity = simpleSmoothMouseLook.Sensitivity;
         targetCamera = GetComponent<Camera>();
         targetCamera.fieldOfView = defaultFov;
+        if (GameManager.main.DebugMode && sensitivityChangeFromFov.magnitude >= simpleSmoothMouseLook.Sensitivity.magnitude)
+        {
+            Debug.Log("<b>[<color=red>WARNING</color>]:</b> Sensitivity Change From Fov must be smaller than SimpleSmoothMouseLook.sensitivity!");
+        }
         if (zoomedInFov <= minZoomedInFov)
         {
             if (GameManager.main.DebugMode)
             {
-                Debug.Log("<b>[<color=red>WARNING</color>]:</b>zoomedInFov must be smaller than minZoomedInFov!");
+                Debug.Log("<b>[<color=red>WARNING</color>]:</b> Zoomed In Fov must be smaller than Min Zoomed In Fov!");
             }
         }
     }
@@ -73,7 +85,13 @@ public class CameraZoom : MonoBehaviour
 
             fov = zoomedInFov - ((zoomedInFov - minZoomedInFov) / scopedZoomSteps) * scopedZoom;
         }
-
+        float maxFovDifference = defaultFov - minZoomedInFov;
+        float currentDifference = defaultFov - fov;
+        float percentageDifference = currentDifference / maxFovDifference;
+        // Change mouse sensitivity according to zoom (fov).
+        // When zoom is max, mouse sensitivity is original - sensitivityChangeFromFov.
+        // When zoom is min, mouse sensitivity is original.
+        simpleSmoothMouseLook.Sensitivity = originalSensitivity - (sensitivityChangeFromFov * percentageDifference);
         targetCamera.fieldOfView = fov;
     }
 

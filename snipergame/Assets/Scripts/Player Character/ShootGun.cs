@@ -27,9 +27,12 @@ public class ShootGun : MonoBehaviour
     private Transform aim;
 
     [SerializeField]
-    private LayerMask collidingLayers;
+    private LayerMask primitiveEnemyLayer;
 
-    private string debugPrefix = "<b>[Gun]:</b>";
+    [SerializeField]
+    private LayerMask complexEnemyLayer;
+
+    private string debugPrefix = "<b>[<color=cyan>Gun</color>]:</b>";
 
     void Start()
     {
@@ -53,16 +56,48 @@ public class ShootGun : MonoBehaviour
 
     private void Shoot()
     {
-        foreach (RaycastHit hitInfo in Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, collidingLayers))
+        RaycastHit[] simpleHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, primitiveEnemyLayer, QueryTriggerInteraction.Collide);
+        foreach (RaycastHit hitInfo in simpleHits)
         {
             if (GameManager.main.DebugMode)
             {
                 Debug.Log(string.Format(
-                    "{0} Object {1} was hit at {2}.",
+                    "{0} Simple Enemy {1} was hit at {2}.",
                     debugPrefix,
                     hitInfo.collider,
                     hitInfo.point
                 ));
+            }
+            Enemy enemy = hitInfo.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.GunRayCastHit();
+            }
+        }
+        // if primitive colliders were hit, recast ray
+        if (simpleHits.Length > 0)
+        {
+            RaycastHit[] complexHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, complexEnemyLayer);
+            foreach (RaycastHit hitInfo in complexHits)
+            {
+                if (GameManager.main.DebugMode)
+                {
+                    Debug.Log(string.Format(
+                        "{0} <b><color=blue>COMPLEX</color></b> Enemy {1} was hit at {2}.",
+                        debugPrefix,
+                        hitInfo.collider,
+                        hitInfo.point
+                    ));
+                }
+                // handle hit logic here
+            }
+            foreach (RaycastHit hitInfo in simpleHits)
+            {
+                Enemy enemy = hitInfo.collider.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.ResetCollider();
+                }
             }
         }
     }

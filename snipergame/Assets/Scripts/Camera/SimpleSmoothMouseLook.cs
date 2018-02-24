@@ -12,6 +12,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     private bool lockCursor;
     [SerializeField]
     private Vector2 sensitivity = new Vector2(2, 2);
+    public Vector2 Sensitivity { get { return sensitivity; } set { sensitivity = value; } }
     [SerializeField]
     private Vector2 smoothing = new Vector2(3, 3);
     [SerializeField]
@@ -24,7 +25,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
     }
- 
+
     void Update()
     {
         // Ensure the cursor is always locked when set
