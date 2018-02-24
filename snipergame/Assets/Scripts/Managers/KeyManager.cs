@@ -11,7 +11,11 @@ public enum KeyTriggeredAction
     ToggleScope,
     IncreaseScopedZoom,
     DecreaseScopedZoom,
-    ShootGun
+    ShootGun,
+    ShowCameraOne,
+    ShowCameraTwo,
+    ShowCameraThree,
+    ShowCameraFour,
 }
 
 public enum MouseScrollWheel
@@ -32,8 +36,12 @@ public class GameKey : System.Object
 public class KeyManager : MonoBehaviour
 {
 
+    [Header("Settings")]
     [SerializeField]
     private bool totalDebug = false;
+
+    [SerializeField]
+    private string debugPrefix = "<b>[<color=green>Input</color>]:</b>";
 
     public static KeyManager main;
 
@@ -42,11 +50,10 @@ public class KeyManager : MonoBehaviour
         main = this;
     }
 
+    [Header("Key bindings")]
     [SerializeField]
     private List<GameKey> gameKeys = new List<GameKey>();
 
-    [SerializeField]
-    private string debugPrefix = "<b>[<color=green>Input</color>]:</b>";
 
     private void Update()
     {

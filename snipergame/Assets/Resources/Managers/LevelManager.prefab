@@ -9,48 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1682945001976984}
+  m_RootGameObject: {fileID: 1702281035030340}
   m_IsPrefabParent: 1
---- !u!1 &1682945001976984
+--- !u!1 &1702281035030340
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4827489398584634}
-  - component: {fileID: 114278868839425252}
+  - component: {fileID: 4251061118120028}
+  - component: {fileID: 114924885295180532}
   m_Layer: 0
-  m_Name: WaypointMarker
-  m_TagString: WaypointMarker
-  m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4827489398584634
+--- !u!4 &4251061118120028
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1682945001976984}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1702281035030340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114278868839425252
+--- !u!114 &114924885295180532
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1682945001976984}
+  m_GameObject: {fileID: 1702281035030340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd8565306bc7a64db03e298ce41a92e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5338f25a209527f428462ac4b81a5112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbours: []
-  network: {fileID: 0}
-  waitTime: 0
+  levels:
+  - {fileID: 114756751131978940, guid: c63755516a6d80b49b9194613e56404f, type: 2}
+  currentLevelNumber: 0

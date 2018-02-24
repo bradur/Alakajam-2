@@ -8,7 +8,8 @@ public enum SoundType
     None
 }
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
 
     public static SoundManager main;
 
@@ -31,12 +32,16 @@ public class SoundManager : MonoBehaviour {
 
     private void Start()
     {
-        if (musicMuted)
+        if (musicSource != null)
         {
-            musicSource.Pause();
-        } else
-        {
-            musicSource.Play();
+            if (musicMuted)
+            {
+                musicSource.Pause();
+            }
+            else
+            {
+                musicSource.Play();
+            }
         }
     }
 
