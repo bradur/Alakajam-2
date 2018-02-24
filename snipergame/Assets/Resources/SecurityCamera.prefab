@@ -38,8 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4545992082038952}
   - component: {fileID: 20221507524517638}
-  - component: {fileID: 124813673452150424}
-  - component: {fileID: 81640282848894074}
+  - component: {fileID: 114803422193802416}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -113,7 +112,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483437799151294}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -238,13 +237,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81640282848894074
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1483437799151294}
-  m_Enabled: 0
 --- !u!95 &95003156167975294
 Animator:
   serializedVersion: 3
@@ -276,10 +268,21 @@ MonoBehaviour:
   rotationAxis: 1
   rotationSpan: 44.2
   rotationSpeed: 0.24
---- !u!124 &124813673452150424
-Behaviour:
+  camera: {fileID: 0}
+--- !u!114 &114803422193802416
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483437799151294}
-  m_Enabled: 1
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57744762d9079934292f57896d8193e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_LookAt: {fileID: 0}

@@ -42,22 +42,19 @@ public class BulletCam : MonoBehaviour {
         {
             float percentageComplete = (Time.unscaledTime - lerpStartTime) / duration;
             bullet.transform.position = Vector3.Lerp(startPosition, targetPosition, percentageComplete);
-            Debug.Log(oldCamera.isActiveAndEnabled);
             if (percentageComplete >= 1f)
             {
                 bullet.gameObject.SetActive(false);
                 GameManager.main.SetCameraControlState(true);
                 bulletOnTheMove = false;
-                Time.timeScale = 1f;
-                oldCamera.gameObject.SetActive(true);
-                bullet.transform.localPosition = bulletStartingPosition;
-                GameManager.main.GetKills(numberOfHits);
-
-                
+                oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = true;
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.enableRagdoll();
                 }
+                Time.timeScale = 1f;
+                
+                GameManager.main.GetKills(numberOfHits);
             }
         }
     }
@@ -66,11 +63,13 @@ public class BulletCam : MonoBehaviour {
 
     public void StartCam(Vector3 start, Vector3 target, Vector3 direction, int numberOfHits, List<Enemy> enemies)
     {
+        bullet.transform.localPosition = bulletStartingPosition;
         if (!bulletOnTheMove)
         {
             this.numberOfHits = numberOfHits;
             GameManager.main.SetCameraControlState(false);
-            oldCamera.gameObject.SetActive(false);
+            oldCamera.GetComponent<Camera>().enabled = false;
+            oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = false;
             bullet.transform.forward = direction;
             //bullet.transform.localPosition = Vector3.zero;
             bullet.transform.position = start;
