@@ -8,7 +8,10 @@ using System.Collections.Generic;
 
 public class WaypointNetwork : MonoBehaviour
 {
+    [SerializeField]
     private List<WaypointMarker> markers;
+    public List<WaypointMarker> Markers { get { return markers; } }
+
     private List<WaypointMarker> drawn;
 
     void Start()

@@ -13,8 +13,11 @@ public class WaypointMarker : MonoBehaviour
     private List<WaypointMarker> neighbours;
     [SerializeField]
     private WaypointNetwork network;
+    [SerializeField]
+    private float waitTime;
 
     public WaypointNetwork Network { get { return network; } set { network = value;  } }
+    public float WaitTime { get { return waitTime; } }
 
     void Start()
     {
