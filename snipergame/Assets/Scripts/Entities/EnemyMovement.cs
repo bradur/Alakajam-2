@@ -14,6 +14,10 @@ public class EnemyMovement : MonoBehaviour
     private WaypointMarker prevMarker;
     [SerializeField]
     private float waitTime = 10f;
+    [SerializeField]
+    private float footPrintDelay = 0.2f;
+    private float lastFootPrint;
+
     private float startWaitingTime = 0f;
     private bool waiting = false;
 
@@ -27,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        lastFootPrint = Time.time;
     }
 
     void Update()
@@ -87,6 +92,12 @@ public class EnemyMovement : MonoBehaviour
 
             Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
             transform.rotation = Quaternion.LookRotation(newDir);
+            
+            if ((Time.time - lastFootPrint) >= footPrintDelay)
+            {
+                lastFootPrint = Time.time;
+                TrailManager.main.SpawnFootPrint(transform.localPosition, transform.localRotation);
+            }
         }
     }
 

@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     private SecurityCameraManager securityCameraManagerPrefab;
 
     [SerializeField]
+    private TrailManager trailManagerPrefab;
+
+    [SerializeField]
     private Transform playerTransform;
 
     [SerializeField]
@@ -59,6 +62,9 @@ public class GameManager : MonoBehaviour
 
         UIManager uiManager = Instantiate(uiManagerPrefab);
         uiManager.transform.SetParent(transform, false);
+
+        TrailManager trailManager = Instantiate(trailManagerPrefab);
+        trailManager.transform.SetParent(transform, false);
 
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);

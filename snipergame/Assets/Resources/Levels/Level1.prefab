@@ -1367,15 +1367,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056815012713270}
-  m_LocalRotation: {x: -0.16655262, y: 0.604835, z: 0.13119203, w: 0.76760894}
-  m_LocalPosition: {x: 25.27, y: 17.28, z: 25.13}
+  m_LocalRotation: {x: -0.3687946, y: 0.5074996, z: 0.39299312, w: 0.67230296}
+  m_LocalPosition: {x: 1.98, y: 17.675, z: 16.21}
   m_LocalScale: {x: 0.5000001, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4611310380325144}
   - {fileID: 4355416290489328}
   m_Father: {fileID: 4741715625405556}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: -24.481, y: 76.47301, z: -0.004}
+  m_LocalEulerAnglesHint: {x: -63.479004, y: 61.528004, z: 20.188002}
 --- !u!4 &4160857517339670
 Transform:
   m_ObjectHideFlags: 1
@@ -1583,7 +1583,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1303059189922194}
-  m_LocalRotation: {x: 0.6885326, y: -0.6078366, z: -0.2678952, w: -0.29101494}
+  m_LocalRotation: {x: 0.68853265, y: -0.60783666, z: -0.26789522, w: -0.29101497}
   m_LocalPosition: {x: -0.17684898, y: -0.00000003723835, z: 0.000000006242772}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -1611,7 +1611,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626493811654462}
-  m_LocalRotation: {x: 0.6885326, y: -0.6078366, z: -0.2678952, w: -0.29101494}
+  m_LocalRotation: {x: 0.68853265, y: -0.60783666, z: -0.26789522, w: -0.29101497}
   m_LocalPosition: {x: -0.17684898, y: -0.00000003723835, z: 0.000000006242772}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -2812,6 +2812,7 @@ MonoBehaviour:
   network: {fileID: 114377528791942242}
   prevMarker: {fileID: 0}
   waitTime: 2
+  footPrintDelay: 0.2
 --- !u!114 &114053638968253184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2965,7 +2966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationAxis: 1
   rotationSpan: 44.2
-  rotationSpeed: 0.24
+  rotationSpeed: 0.01
   camera: {fileID: 20698632834645682}
 --- !u!114 &114657991469569228
 MonoBehaviour:
@@ -3008,6 +3009,7 @@ MonoBehaviour:
   network: {fileID: 114115975585211804}
   prevMarker: {fileID: 0}
   waitTime: 2
+  footPrintDelay: 0.2
 --- !u!114 &114739954188801012
 MonoBehaviour:
   m_ObjectHideFlags: 1

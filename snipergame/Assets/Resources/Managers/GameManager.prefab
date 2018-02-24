@@ -530,8 +530,8 @@ MonoBehaviour:
   minZoomedInFov: 5
   sensitivityChangeFromFov: {x: 1.95, y: 1.95}
   zoomedIn: 0
-  drawVerticalLine: {fileID: 114952576924058030}
-  drawHorizontalLine: {fileID: 114712590300720960}
+  drawVerticalLine: {fileID: 0}
+  drawHorizontalLine: {fileID: 0}
 --- !u!114 &114952576924058030
 MonoBehaviour:
   m_ObjectHideFlags: 1
