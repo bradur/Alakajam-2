@@ -109,12 +109,21 @@ public class GameManager : MonoBehaviour
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
 
-        securityCameraManager = Instantiate(securityCameraManagerPrefab);
-        securityCameraManager.transform.SetParent(transform, false);
+        ReloadCameraManager();
 
         ReloadBulletHoles();
 
         levelManager.LoadNextLevel();
+    }
+
+    private void ReloadCameraManager()
+    {
+        if (securityCameraManager != null)
+        {
+            Destroy(securityCameraManager.gameObject);
+        }
+        securityCameraManager = Instantiate(securityCameraManagerPrefab);
+        securityCameraManager.transform.SetParent(transform, false);
     }
 
     private void CreatePlayer()
@@ -191,6 +200,7 @@ public class GameManager : MonoBehaviour
             expectingNextLevel = false;
             levelManager.LoadNextLevel();
             ReloadBulletHoles();
+            ReloadCameraManager();
             SetSecurityCameraControlState(true);
             SetCameraControlState(true);
             UIManager.main.HideMessage();
