@@ -31,6 +31,19 @@ public class UIManager : MonoBehaviour {
         hudBullets.SetInt(count);
     }
 
+    [SerializeField]
+    private SimpleHUDElement messageDisplay;
+
+    public void ShowMessage(string message)
+    {
+        messageDisplay.gameObject.SetActive(true);
+        messageDisplay.SetText(message);
+    }
+
+    public void HideMessage()
+    {
+        messageDisplay.gameObject.SetActive(false);
+    }
 
     [SerializeField]
     private SimpleHUDElement hudTargets;

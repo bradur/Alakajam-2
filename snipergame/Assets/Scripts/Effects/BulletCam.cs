@@ -40,6 +40,7 @@ public class BulletCam : MonoBehaviour {
     {
         if (bulletOnTheMove)
         {
+            Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
             float percentageComplete = (Time.unscaledTime - lerpStartTime) / duration;
             bullet.transform.position = Vector3.Lerp(startPosition, targetPosition, percentageComplete);
             if (percentageComplete >= 1f)
@@ -47,7 +48,9 @@ public class BulletCam : MonoBehaviour {
                 bullet.gameObject.SetActive(false);
                 GameManager.main.SetCameraControlState(true);
                 bulletOnTheMove = false;
+                
                 oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = true;
+                Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.enableRagdoll();
@@ -55,6 +58,10 @@ public class BulletCam : MonoBehaviour {
                 Time.timeScale = 1f;
                 GameManager.main.SetSecurityCameraControlState(true);
                 GameManager.main.GetKills(numberOfHits);
+                if (GameManager.main.GetNumberOfBullets() == 0)
+                {
+                    UIManager.main.ShowMessage("Out of bullets! Press R to restart.");
+                }
             }
         }
     }
@@ -71,6 +78,7 @@ public class BulletCam : MonoBehaviour {
             GameManager.main.SetCameraControlState(false);
             oldCamera.GetComponent<Camera>().enabled = false;
             oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = false;
+
             bullet.transform.forward = direction;
             //bullet.transform.localPosition = Vector3.zero;
             bullet.transform.position = start;
@@ -82,6 +90,7 @@ public class BulletCam : MonoBehaviour {
             
             lerpStartTime = Time.unscaledTime;
             Time.timeScale = 0f;
+            Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
         }
     }
 }

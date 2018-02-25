@@ -51,6 +51,7 @@ public class ShootGun : MonoBehaviour
 
     void Update()
     {
+        UpdateOrigin();
         Debug.DrawRay(shootOrigin, aim.forward * maxRayLength, Color.red);
         timeSinceLastShot += Time.deltaTime;
         if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShootGun))
@@ -124,6 +125,7 @@ public class ShootGun : MonoBehaviour
             furthestPoint = furthestPoint + aim.forward.normalized * overShoot;
 
             GameManager.main.SetScopeVisibility(false);
+
             GameManager.main.StartBulletCam(shootOrigin, furthestPoint, aim.forward, complexHits.Length, enemiesHit);
 
             foreach (RaycastHit hitInfo in simpleHits)
@@ -133,6 +135,12 @@ public class ShootGun : MonoBehaviour
                 {
                     enemy.ResetCollider();
                 }
+            }
+        } else
+        {
+            if (GameManager.main.GetNumberOfBullets() == 0)
+            {
+                UIManager.main.ShowMessage("Out of bullets! Press R to restart.");
             }
         }
     }
