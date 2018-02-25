@@ -109,12 +109,21 @@ public class GameManager : MonoBehaviour
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
 
-        securityCameraManager = Instantiate(securityCameraManagerPrefab);
-        securityCameraManager.transform.SetParent(transform, false);
+        ReloadCameraManager();
 
         ReloadBulletHoles();
 
         levelManager.LoadNextLevel();
+    }
+
+    private void ReloadCameraManager()
+    {
+        if (securityCameraManager != null)
+        {
+            Destroy(securityCameraManager.gameObject);
+        }
+        securityCameraManager = Instantiate(securityCameraManagerPrefab);
+        securityCameraManager.transform.SetParent(transform, false);
     }
 
     private void CreatePlayer()
@@ -168,6 +177,18 @@ public class GameManager : MonoBehaviour
             expectingNextLevel = true;
         }
     }
+    private bool expectingQuit = false;
+    string cachedMessage = "";
+    public void ExpectingQuit()
+    {
+        SetScopeVisibility(false);
+        SetSecurityCameraControlState(false);
+        SetCameraControlState(false);
+        cachedMessage = UIManager.main.GetMessageText();
+        UIManager.main.ShowMessage("Press Y to QUIT, N to cancel.");
+        expectingQuit = true;
+    }
+
     void Update()
     {
         if (expectingRestart && KeyManager.main.GetKeyUp(KeyTriggeredAction.Restart))
@@ -176,11 +197,39 @@ public class GameManager : MonoBehaviour
         }
         if (expectingNextLevel && KeyManager.main.GetKeyUp(KeyTriggeredAction.NextLevel))
         {
+            expectingNextLevel = false;
             levelManager.LoadNextLevel();
             ReloadBulletHoles();
+            ReloadCameraManager();
             SetSecurityCameraControlState(true);
             SetCameraControlState(true);
             UIManager.main.HideMessage();
+        }
+        if (KeyManager.main.GetKeyUp(KeyTriggeredAction.QuitMenu))
+        {
+            ExpectingQuit();
+        }
+        if (expectingQuit)
+        {
+            if (KeyManager.main.GetKeyUp(KeyTriggeredAction.Quit))
+            {
+                Application.Quit();
+            }
+            else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.Cancel))
+            {
+                SetSecurityCameraControlState(true);
+                SetCameraControlState(true);
+                if (expectingNextLevel)
+                {
+                    UIManager.main.ShowMessage(cachedMessage);
+                }
+                else
+                {
+                    UIManager.main.HideMessage();
+                }
+                expectingQuit = false;
+            }
+
         }
     }
 

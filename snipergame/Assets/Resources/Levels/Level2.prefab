@@ -5559,6 +5559,7 @@ MonoBehaviour:
   rotationAxis: 1
   rotationSpan: 44.2
   rotationSpeed: 0.24
+  direction: 1
   camera: {fileID: 20516886002486262}
 --- !u!114 &114288369658169060
 MonoBehaviour:
@@ -5622,7 +5623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfBullets: 10
   playerPosition: {fileID: 4333043856222456}
-  title: Second mission
+  title: Out of sight
   numberOfEnemies: 4
   securityCameras:
   - {fileID: 114270054304024584}

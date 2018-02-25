@@ -2757,7 +2757,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5b0bad1dbbbc4ae4abf90ca006d590d2, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2791,7 +2791,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5b0bad1dbbbc4ae4abf90ca006d590d2, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2896,7 +2896,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2930,7 +2930,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3068,7 +3068,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3102,7 +3102,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3136,7 +3136,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3170,7 +3170,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3238,7 +3238,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3306,7 +3306,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a99fcea1601fd7744ade0a77a7b8d4ea, type: 2}
+  - {fileID: 2100000, guid: cd909d8333be9164ca0f90b524653046, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4320,7 +4320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfBullets: 10
   playerPosition: {fileID: 4190451884885706}
-  title: First mission
+  title: Perpetual motion
   numberOfEnemies: 2
   securityCameras:
   - {fileID: 114810186246300440}
@@ -4413,6 +4413,7 @@ MonoBehaviour:
   rotationAxis: 1
   rotationSpan: 44.2
   rotationSpeed: 0.24
+  direction: 1
   camera: {fileID: 20683237854890850}
 --- !u!114 &114815842309857378
 MonoBehaviour:

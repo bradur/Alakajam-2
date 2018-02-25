@@ -1,6 +1,6 @@
 // Date   : 24.02.2018 21:13
 // Project: snipergame
-// Author : bradur
+// Author : M2tias
 
 using UnityEngine;
 using System.Collections;

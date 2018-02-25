@@ -20,6 +20,11 @@ public class SimpleHUDElement : MonoBehaviour
 
     private string originalText;
 
+    public string GetText()
+    {
+        return txtComponent.text;
+    }
+
     private void Start()
     {
         if (imgComponent != null)
