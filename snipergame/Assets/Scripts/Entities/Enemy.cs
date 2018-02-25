@@ -68,6 +68,7 @@ public class Enemy : MonoBehaviour
 
     public void enableRagdoll()
     {
+        GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.main.GetSeeThroughMaterial();
         GetComponent<EnemyMovement>().enabled = false;
         animator.enabled = false;
         foreach (var rb in GetComponentsInChildren<Rigidbody>())

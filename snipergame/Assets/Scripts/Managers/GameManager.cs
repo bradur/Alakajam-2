@@ -72,6 +72,14 @@ public class GameManager : MonoBehaviour
 
     private Quaternion originalPlayerRotation;
 
+    [SerializeField]
+    private Material seeThroughMaterial;
+
+    public Material GetSeeThroughMaterial()
+    {
+        return seeThroughMaterial;
+    }
+
     void Start()
     {
         KeyManager keyManager = Instantiate(keyManagerPrefab);

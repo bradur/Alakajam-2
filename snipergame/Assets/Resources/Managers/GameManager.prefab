@@ -196,3 +196,4 @@ MonoBehaviour:
   debugMode: 1
   playerCharacterPrefab: {fileID: 1422299602755470, guid: 075d7c866352b4c429dc04b38e06793c,
     type: 2}
+  seeThroughMaterial: {fileID: 2100000, guid: 5388565317457ed40af8406520933e9f, type: 2}
