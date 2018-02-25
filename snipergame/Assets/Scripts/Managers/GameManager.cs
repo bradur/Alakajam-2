@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
     {
         if (expectingRestart && KeyManager.main.GetKeyUp(KeyTriggeredAction.Restart)) {
             playerTransform.gameObject.SetActive(false);
+            UIManager.main.HideMessage();
             SetScopeVisibility(false);
             Time.timeScale = 1f;
             CreatePlayer();
