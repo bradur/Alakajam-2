@@ -27,6 +27,22 @@ public class Level : MonoBehaviour
 
     private bool levelFinished = false;
 
+    public void DontSeeThroughDeadEnemies()
+    {
+        foreach (Enemy enemy in GetComponentsInChildren<Enemy>())
+        {
+            enemy.DontSeeThroughIfDead();
+        }
+    }
+
+    public void SeeThroughDeadEnemies()
+    {
+        foreach (Enemy enemy in GetComponentsInChildren<Enemy>())
+        {
+            enemy.SeeThroughIfDead();
+        }
+    }
+
     [SerializeField]
     private List<SecurityCamera> securityCameras = new List<SecurityCamera>();
     public List<SecurityCamera> SecurityCameras { get { return securityCameras; } }
@@ -41,7 +57,7 @@ public class Level : MonoBehaviour
         UIManager.main.ShowLevelTitle(title);
         if (playerPosition != null)
         {
-            GameManager.main.SetPlayerPosition(playerPosition.position);
+            GameManager.main.SetPlayerPosition(playerPosition);
         }
         else
         {
@@ -75,16 +91,18 @@ public class Level : MonoBehaviour
         return false;
     }
 
-    public void GetKills(int number)
+    // returns number of enemies left
+    public int GetKills(int number)
     {
         numberOfEnemies -= number;
         if (numberOfEnemies <= 0)
         {
             numberOfEnemies = 0;
             UIManager.main.SetTargetCount(numberOfEnemies);
-            GameManager.main.LoadNextLevel();
-            return;
+            GameManager.main.ExpectingNextLevel();
+            return numberOfEnemies;
         }
         UIManager.main.SetTargetCount(numberOfEnemies);
+        return numberOfEnemies;
     }
 }

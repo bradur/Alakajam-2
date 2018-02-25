@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
+[ExecuteInEditMode]
 public class WaypointManager : MonoBehaviour
 {
     [SerializeField]
@@ -33,7 +34,8 @@ public class WaypointManager : MonoBehaviour
         {
             WaypointMarker selectedMarker = selected.GetComponent<WaypointMarker>();
             WaypointNetwork selectedNetwork = selectedMarker.Network;
-            WaypointMarker obj = Resources.Load<WaypointMarker>("WaypointMarker");
+            //WaypointMarker obj = Resources.Load<WaypointMarker>("WaypointMarker");
+            WaypointMarker obj = AssetDatabase.LoadAssetAtPath<WaypointMarker>("Assets/Resources/WaypointMarker.prefab");
 
             WaypointMarker newMarker = Instantiate(obj, selectedNetwork.transform) as WaypointMarker;
             newMarker.transform.localPosition = selectedMarker.transform.localPosition + Vector3.back;

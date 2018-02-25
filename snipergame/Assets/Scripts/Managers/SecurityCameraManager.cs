@@ -16,7 +16,7 @@ public class SecurityCameraManager : MonoBehaviour
 
 
     private bool canControlCameras = true;
-    public void SetCameraControlState (bool allowed)
+    public void SetCameraControlState(bool allowed)
     {
         canControlCameras = allowed;
         SetCamera(-1);
@@ -79,23 +79,33 @@ public class SecurityCameraManager : MonoBehaviour
                 securityCamera = GameManager.main.GetSecurityCamera(currentSecurityCameraIndex);
                 securityCamera.Camera.enabled = false;
             }
-        }
-        if (securityCameraIndex != -1)
-        {
-            currentSecurityCameraIndex = securityCameraIndex;
-            GameManager.main.SetScopeVisibility(false);
-            GameManager.main.SetCameraControlState(false);
-            UIManager.main.SetCameraActiveState(securityCameraIndex, true);
-
-            if (GameManager.main.GetSecurityCamera(securityCameraIndex) != null)
+            else
             {
-                securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);
-                securityCamera.Camera.enabled = true;
+                return;
             }
         }
+        // when we select a security camera
+        if (securityCameraIndex != -1)
+        {
+            if (GameManager.main.GetSecurityCamera(securityCameraIndex) != null)
+            {
+                currentSecurityCameraIndex = securityCameraIndex;
+                GameManager.main.SetScopeVisibility(false);
+                GameManager.main.SetCameraControlState(false);
+                UIManager.main.SetCameraActiveState(securityCameraIndex, true);
+                securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);
+                securityCamera.Camera.enabled = true;
+                GameManager.main.DontSeeThroughDeadEnemies();
+                GameManager.main.SetGunVisibility(false);
+            }
+            
+        }
+        // when we go back to normal view.
         else
         {
+            GameManager.main.SeeThroughDeadEnemies();
             GameManager.main.SetCameraControlState(true);
+            GameManager.main.SetGunVisibility(true);
         }
     }
 

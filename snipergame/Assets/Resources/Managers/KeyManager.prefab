@@ -81,3 +81,6 @@ MonoBehaviour:
   - key: 114
     mouseScrollWheel: 0
     action: 9
+  - key: 32
+    mouseScrollWheel: 0
+    action: 10

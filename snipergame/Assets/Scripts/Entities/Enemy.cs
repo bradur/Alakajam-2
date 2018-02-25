@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     private BoxCollider boxCollider;
     private Animator animator;
     private SkinnedMeshColliderSynchronizer skinnedMeshColliderSynchronizer;
+    private SkinnedMeshRenderer skinMesh;
+    private Material originalMaterial;
 
     void Start()
     {
@@ -29,7 +31,9 @@ public class Enemy : MonoBehaviour
         skinnedMeshColliderSynchronizer.transform.SetParent(transform, false);
         skinnedMeshColliderSynchronizer.transform.localPosition = Vector3.zero;
         skinnedMeshColliderSynchronizer.transform.localRotation = Quaternion.identity;
-        skinnedMeshColliderSynchronizer.SetMeshRenderer(GetComponentInChildren<SkinnedMeshRenderer>());
+        skinMesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        originalMaterial = skinMesh.material;
+        skinnedMeshColliderSynchronizer.SetMeshRenderer(skinMesh);
         gameObject.layer = LayerMask.NameToLayer("EnemyPrimitive");
 
         foreach (var rb in GetComponentsInChildren<Rigidbody>())
@@ -66,9 +70,31 @@ public class Enemy : MonoBehaviour
         skinnedMeshColliderSynchronizer.ResetCollider();
     }
 
+
+    public void SeeThroughIfDead()
+    {
+        if (dead)
+        {
+            skinMesh.material = GameManager.main.GetSeeThroughMaterial();
+        }
+    }
+
+    private bool dead = false;
+
+    public void DontSeeThroughIfDead()
+    {
+        if (dead)
+        {
+            skinMesh.material = originalMaterial;
+            skinMesh.material.color = Color.red;
+        }
+    }
+
+    
     public void enableRagdoll()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material = GameManager.main.GetSeeThroughMaterial();
+        dead = true;
+        SeeThroughIfDead();
         GetComponent<EnemyMovement>().enabled = false;
         animator.enabled = false;
         foreach (var rb in GetComponentsInChildren<Rigidbody>())
@@ -90,5 +116,6 @@ public class Enemy : MonoBehaviour
             c.enabled = true;
         }
         GetComponent<Collider>().enabled = false;
+        
     }
 }

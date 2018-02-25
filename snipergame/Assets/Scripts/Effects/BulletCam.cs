@@ -55,10 +55,12 @@ public class BulletCam : MonoBehaviour {
                 }
                 Time.timeScale = 1f;
                 GameManager.main.SetSecurityCameraControlState(true);
-                GameManager.main.GetKills(numberOfHits);
-                if (GameManager.main.GetNumberOfBullets() == 0)
+                if (GameManager.main.GetKills(numberOfHits) > 0)
                 {
-                    UIManager.main.ShowMessage("Out of bullets! Press R to restart.");
+                    if (GameManager.main.GetNumberOfBullets() == 0)
+                    {
+                        UIManager.main.ShowMessage("Out of bullets! Press R to restart.");
+                    }
                 }
             }
         }
@@ -87,7 +89,6 @@ public class BulletCam : MonoBehaviour {
             
             lerpStartTime = Time.unscaledTime;
             Time.timeScale = 0f;
-            Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
         }
     }
 }
