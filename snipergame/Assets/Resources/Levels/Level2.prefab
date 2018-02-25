@@ -5532,7 +5532,7 @@ MonoBehaviour:
   numberOfBullets: 10
   playerPosition: {fileID: 4333043856222456}
   title: Second mission
-  numberOfEnemies: 2
+  numberOfEnemies: 3
   securityCameras:
   - {fileID: 114270054304024584}
 --- !u!114 &114629817462364610

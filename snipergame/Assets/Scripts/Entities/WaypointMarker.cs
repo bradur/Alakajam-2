@@ -5,7 +5,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 
 public class WaypointMarker : MonoBehaviour
 {
@@ -39,8 +38,4 @@ public class WaypointMarker : MonoBehaviour
         neighbours.Add(marker);
     }
 
-    private void OnDrawGizmos()
-    {
-        //Handles.Label(transform.position-new Vector3(0.2f, -0.7f, 0.2f), EditorGUIUtility.IconContent("lightMeter/greenLight").image);
-    }
 }

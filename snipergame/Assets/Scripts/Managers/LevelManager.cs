@@ -33,6 +33,15 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
+    public int GetNumberOfBullets()
+    {
+        if(currentLevel != null)
+        {
+            return currentLevel.NumberOfBullets;
+        }
+        return 0;
+    }
+
     public bool LoadNextLevel()
     {
         if (!initialized)
@@ -52,6 +61,11 @@ public class LevelManager : MonoBehaviour
             Debug.Log("The end!");
         }
         return false;
+    }
+
+    public void ReloadLevel()
+    {
+        LoadLevel(currentLevelNumber);
     }
 
     private void LoadLevel(int levelNumber)
