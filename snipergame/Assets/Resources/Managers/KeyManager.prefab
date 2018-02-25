@@ -84,3 +84,12 @@ MonoBehaviour:
   - key: 32
     mouseScrollWheel: 0
     action: 10
+  - key: 27
+    mouseScrollWheel: 0
+    action: 11
+  - key: 121
+    mouseScrollWheel: 0
+    action: 12
+  - key: 110
+    mouseScrollWheel: 0
+    action: 13

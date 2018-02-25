@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour {
         messageDisplay.SetText(message);
     }
 
+    public string GetMessageText()
+    {
+        return messageDisplay.GetText();
+    }
+
     public void HideMessage()
     {
         messageDisplay.gameObject.SetActive(false);

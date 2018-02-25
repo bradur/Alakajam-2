@@ -17,7 +17,10 @@ public enum KeyTriggeredAction
     ShowCameraThree,
     ShowCameraFour,
     Restart,
-    NextLevel
+    NextLevel,
+    QuitMenu,
+    Quit,
+    Cancel
 }
 
 public enum MouseScrollWheel
