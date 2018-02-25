@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public enum SoundType
 {
-    None
+    None,
+    Gunshot
 }
 
 public class SoundManager : MonoBehaviour

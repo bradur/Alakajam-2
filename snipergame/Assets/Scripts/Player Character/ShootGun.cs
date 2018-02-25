@@ -66,6 +66,7 @@ public class ShootGun : MonoBehaviour
 
     private void Shoot()
     {
+        SoundManager.main.PlaySound(SoundType.Gunshot);
         RaycastHit[] simpleHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, primitiveEnemyLayer, QueryTriggerInteraction.Collide);
         List<BulletHole> holes = BulletHoleRays();
         Vector3 furthestPoint = Vector3.zero;
