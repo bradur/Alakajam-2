@@ -65,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
             angleSpeed += (angleBetween / waitTime) * Time.deltaTime;
             Vector3 newDir = Vector3.RotateTowards(transform.forward, direction, angleSpeed*20, 0);
             Quaternion newQ = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newQ, Time.deltaTime*(2/waitTime));
+            transform.rotation = newQ;//Quaternion.Slerp(transform.rotation, newQ, Time.deltaTime*(2/waitTime));
         }
         else // normal movement
         {
@@ -100,6 +100,7 @@ public class EnemyMovement : MonoBehaviour
                 }
                 currentMarker = currentMarker.GetNeighbours().Where(x => x != prevMarker && x != prevPrevMarker).First();
                 direction = replaceY(currentMarker.transform.position, transform.position) - transform.position;
+                Debug.Log(replaceY(currentMarker.transform.position, transform.position) + "; " + transform.position);
 
                 angleBetween = Mathf.Deg2Rad * Vector3.Angle(transform.position, replaceY(currentMarker.transform.position, transform.position));
 
@@ -115,6 +116,8 @@ public class EnemyMovement : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(newDir);
             }
             
+
+
             if ((Time.time - lastFootPrint) >= footPrintDelay)
             {
                 lastFootPrint = Time.time;

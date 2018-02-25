@@ -73,6 +73,7 @@ public class SecurityCameraManager : MonoBehaviour
         if (currentSecurityCameraIndex != -1)
         {
             UIManager.main.SetCameraActiveState(currentSecurityCameraIndex, false);
+
             if (GameManager.main.GetSecurityCamera(currentSecurityCameraIndex) != null)
             {
                 securityCamera = GameManager.main.GetSecurityCamera(currentSecurityCameraIndex);
@@ -85,6 +86,7 @@ public class SecurityCameraManager : MonoBehaviour
             GameManager.main.SetScopeVisibility(false);
             GameManager.main.SetCameraControlState(false);
             UIManager.main.SetCameraActiveState(securityCameraIndex, true);
+
             if (GameManager.main.GetSecurityCamera(securityCameraIndex) != null)
             {
                 securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);

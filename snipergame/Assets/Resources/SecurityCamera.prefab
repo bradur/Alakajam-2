@@ -268,7 +268,7 @@ MonoBehaviour:
   rotationAxis: 1
   rotationSpan: 44.2
   rotationSpeed: 0.24
-  camera: {fileID: 0}
+  camera: {fileID: 20221507524517638}
 --- !u!114 &114803422193802416
 MonoBehaviour:
   m_ObjectHideFlags: 1

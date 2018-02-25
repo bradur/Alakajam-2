@@ -20,12 +20,6 @@ public class BulletHole : MonoBehaviour
         Bullet b = GameManager.main.GetBullet();
         if (Vector3.Distance(b.transform.position, transform.position) < 0.2f)
         {
-            Debug.Log("lelele");
-            Debug.Log("lelele");
-            Debug.Log("lelele");
-            Debug.Log("lelele");
-            Debug.Log("lelele");
-            Debug.Log("lölölö");
             gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
