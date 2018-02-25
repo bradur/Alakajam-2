@@ -19,8 +19,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        boxCollider.center = new Vector3(0f, 1f, 0f);
-        boxCollider.size = new Vector3(0.6f, 2f, 1.35f);
+        //boxCollider.center = new Vector3(0f, 1f, 0f);
+        //boxCollider.size = new Vector3(0.6f, 2f, 1.35f);
         boxCollider.isTrigger = true;
         skinnedMeshColliderSynchronizer = GetComponentInChildren<SkinnedMeshColliderSynchronizer>();
         if (skinnedMeshColliderSynchronizer == null)
