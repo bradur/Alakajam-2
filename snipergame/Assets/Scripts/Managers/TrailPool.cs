@@ -31,7 +31,10 @@ public class TrailPool : MonoBehaviour
 
         for(int i = 0; i< poolSize; i++)
         {
-            backupTrail.Add(Spawn());
+            FootPrint print = Spawn();
+            print.enabled = false;
+            print.transform.position = new Vector3(0, -1000, 0);
+            backupTrail.Add(print);
         }
     }
 

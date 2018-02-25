@@ -32,6 +32,7 @@ public class BulletHolePool : MonoBehaviour
         {
             BulletHole hole = Spawn();
             hole.enabled = false;
+            hole.transform.position = new   Vector3(0, -1000, 0);
             backupHoles.Add(hole);
         }
     }

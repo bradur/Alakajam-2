@@ -121,7 +121,7 @@ public class EnemyMovement : MonoBehaviour
             if ((Time.time - lastFootPrint) >= footPrintDelay)
             {
                 lastFootPrint = Time.time;
-                TrailManager.main.SpawnFootPrint(transform.localPosition, transform.localRotation);
+                //TrailManager.main.SpawnFootPrint(transform.localPosition, transform.localRotation);
             }
         }
     }
