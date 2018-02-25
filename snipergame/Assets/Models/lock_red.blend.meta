@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: af1ff8075430a784c981b9866ed06008
-timeCreated: 1519580478
+guid: c4e8fd8a971d6b3409d41850f076fc65
+timeCreated: 1519580446
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -8,9 +8,10 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: Mat_Walls
+    2100002: Mat_Door_Red
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube_004
+    4300000: Cube_003
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
