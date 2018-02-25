@@ -26,6 +26,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
         targetDirection = transform.localRotation.eulerAngles;
         if (lockCursor)
         {
+            Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
         Cursor.visible = false;
@@ -33,7 +34,10 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
     void Update()
     {
- 
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
         var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
