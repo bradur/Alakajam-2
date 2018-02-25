@@ -1,18 +1,17 @@
 fileFormatVersion: 2
-guid: af1ff8075430a784c981b9866ed06008
-timeCreated: 1519545054
+guid: 3e275d91a8d4cb745b637a6369138eea
+timeCreated: 1519547831
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Mat_Walls
-    2100002: Mat_Door_Green
-    2100004: Mat_Door_Red
+    2100000: Mat_Stove
+    2100002: Mat_Fire
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube_004
+    4300000: Cylinder
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
