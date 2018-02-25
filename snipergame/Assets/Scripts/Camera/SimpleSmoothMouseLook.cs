@@ -29,6 +29,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+        Cursor.visible = false;
     }
 
     void Update()
