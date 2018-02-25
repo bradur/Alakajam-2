@@ -112,8 +112,7 @@ public class GameManager : MonoBehaviour
         securityCameraManager = Instantiate(securityCameraManagerPrefab);
         securityCameraManager.transform.SetParent(transform, false);
 
-        bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
-        bulletHoleManager.transform.SetParent(transform, false);
+        ReloadBulletHoles();
 
         levelManager.LoadNextLevel();
     }
@@ -131,11 +130,19 @@ public class GameManager : MonoBehaviour
         playerTransform = player.transform;
     }
 
-    void Restart()
+    void ReloadBulletHoles()
     {
-        Destroy(bulletHoleManager.gameObject);
+        if (bulletHoleManager != null)
+        {
+            Destroy(bulletHoleManager.gameObject);
+        }
         bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
         bulletHoleManager.transform.SetParent(transform, false);
+    }
+
+    void Restart()
+    {
+        ReloadBulletHoles();
         playerTransform.gameObject.SetActive(false);
         UIManager.main.HideMessage();
         SetScopeVisibility(false);
@@ -170,6 +177,7 @@ public class GameManager : MonoBehaviour
         if (expectingNextLevel && KeyManager.main.GetKeyUp(KeyTriggeredAction.NextLevel))
         {
             levelManager.LoadNextLevel();
+            ReloadBulletHoles();
             SetSecurityCameraControlState(true);
             SetCameraControlState(true);
             UIManager.main.HideMessage();
