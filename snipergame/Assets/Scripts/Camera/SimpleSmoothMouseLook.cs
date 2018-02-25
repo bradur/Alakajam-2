@@ -24,15 +24,14 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     {
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
-    }
-
-    void Update()
-    {
-        // Ensure the cursor is always locked when set
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    void Update()
+    {
  
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
