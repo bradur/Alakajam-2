@@ -40,7 +40,6 @@ public class BulletCam : MonoBehaviour {
     {
         if (bulletOnTheMove)
         {
-            Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
             float percentageComplete = (Time.unscaledTime - lerpStartTime) / duration;
             bullet.transform.position = Vector3.Lerp(startPosition, targetPosition, percentageComplete);
             if (percentageComplete >= 1f)
@@ -50,7 +49,6 @@ public class BulletCam : MonoBehaviour {
                 bulletOnTheMove = false;
                 
                 oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = true;
-                Debug.Log("Old camera: " + oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled);
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.enableRagdoll();
@@ -80,7 +78,6 @@ public class BulletCam : MonoBehaviour {
             oldCamera.GetComponent<Cinemachine.CinemachineExternalCamera>().enabled = false;
 
             bullet.transform.forward = direction;
-            //bullet.transform.localPosition = Vector3.zero;
             bullet.transform.position = start;
             bullet.gameObject.SetActive(true);
             startPosition = bullet.transform.position;

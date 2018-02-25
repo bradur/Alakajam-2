@@ -17,7 +17,17 @@ public class BulletHole : MonoBehaviour
 
     void Update()
     {
-
+        Bullet b = GameManager.main.GetBullet();
+        if (Vector3.Distance(b.transform.position, transform.position) < 0.2f)
+        {
+            Debug.Log("lelele");
+            Debug.Log("lelele");
+            Debug.Log("lelele");
+            Debug.Log("lelele");
+            Debug.Log("lelele");
+            Debug.Log("lölölö");
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
     }
 
     public void Activate()
@@ -28,5 +38,13 @@ public class BulletHole : MonoBehaviour
     public void Deactivate()
     {
         gameObject.SetActive(false);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
     }
 }

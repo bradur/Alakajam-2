@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     private BulletCam bulletCam;
 
+    private Bullet bullet;
+
     private CameraZoom cameraZoom;
 
     private Camera mainCamera;
@@ -105,6 +107,7 @@ public class GameManager : MonoBehaviour
         cameraZoom = player.GetComponentInChildren<CameraZoom>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         mouseLook = player.GetComponentInChildren<SimpleSmoothMouseLook>();
+        bullet = player.GetComponentInChildren<Bullet>();
         playerTransform = player.transform;
     }
 
@@ -203,5 +206,10 @@ public class GameManager : MonoBehaviour
     {
         levelManager.GetKills(number);
 
+    }
+
+    public Bullet GetBullet()
+    {
+        return bullet;
     }
 }
