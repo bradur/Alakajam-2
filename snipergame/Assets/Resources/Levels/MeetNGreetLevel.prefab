@@ -3137,7 +3137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfBullets: 5
   playerPosition: {fileID: 4032220241775888}
-  title: 
+  title: Rooftop excercise
   numberOfEnemies: 2
   securityCameras:
   - {fileID: 114354885679623000}
