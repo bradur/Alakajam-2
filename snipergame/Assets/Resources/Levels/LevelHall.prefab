@@ -4779,7 +4779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbe19acc0b71454b9b4b6752e4402a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBullets: 10
+  numberOfBullets: 4
   playerPosition: {fileID: 4445982600594696}
   title: Hallway
   numberOfEnemies: 3

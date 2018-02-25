@@ -5652,7 +5652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfBullets: 3
   playerPosition: {fileID: 4692702841881234}
-  title: Herbal Man
+  title: Herbal man
   numberOfEnemies: 1
   securityCameras:
   - {fileID: 114950413902160890}

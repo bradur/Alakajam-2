@@ -61,5 +61,6 @@ MonoBehaviour:
   - {fileID: 114065069244878232, guid: 2d96b703b83810444929e285d120c9dc, type: 2}
   - {fileID: 114544862260766044, guid: 28b11af5be878194fa2e5bd22b80305d, type: 2}
   - {fileID: 114011573927077596, guid: 94c587b8836f6694daf40952d9541ee7, type: 2}
+  - {fileID: 114680046616445554, guid: a49ed3ab669941f4f88269e5ded289d0, type: 2}
   - {fileID: 114856271836048586, guid: cc0f54635abcb9347aaf2581fae70a22, type: 2}
   currentLevelNumber: 0
