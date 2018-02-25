@@ -73,9 +73,10 @@ public class SecurityCameraManager : MonoBehaviour
         if (currentSecurityCameraIndex != -1)
         {
             UIManager.main.SetCameraActiveState(currentSecurityCameraIndex, false);
-            securityCamera = GameManager.main.GetSecurityCamera(currentSecurityCameraIndex);
-            if (securityCamera != null)
+
+            if (GameManager.main.GetSecurityCamera(currentSecurityCameraIndex) != null)
             {
+                securityCamera = GameManager.main.GetSecurityCamera(currentSecurityCameraIndex);
                 securityCamera.Camera.enabled = false;
             }
         }
@@ -85,9 +86,10 @@ public class SecurityCameraManager : MonoBehaviour
             GameManager.main.SetScopeVisibility(false);
             GameManager.main.SetCameraControlState(false);
             UIManager.main.SetCameraActiveState(securityCameraIndex, true);
-            securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);
-            if (securityCamera != null)
+
+            if (GameManager.main.GetSecurityCamera(securityCameraIndex) != null)
             {
+                securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);
                 securityCamera.Camera.enabled = true;
             }
         }

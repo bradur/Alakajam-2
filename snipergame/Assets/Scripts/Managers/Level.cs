@@ -12,6 +12,7 @@ public class Level : MonoBehaviour
     [SerializeField]
     [Range(1, 100)]
     private int numberOfBullets = 10;
+    public int NumberOfBullets { get { return numberOfBullets; } }
 
     [SerializeField]
     private Transform playerPosition;

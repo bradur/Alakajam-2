@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalDebug: 0
+  debugPrefix: <b>[<color=green>Input</color>]:</b>
   gameKeys:
   - key: 324
     mouseScrollWheel: 0
@@ -77,4 +78,6 @@ MonoBehaviour:
   - key: 52
     mouseScrollWheel: 0
     action: 8
-  debugPrefix: <b>[<color=green>Input</color>]:</b>
+  - key: 114
+    mouseScrollWheel: 0
+    action: 9

@@ -39,28 +39,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BulletHoleManager bulletHoleManagerPrefab;
 
-    [SerializeField]
-    private Transform playerTransform;
 
-    [SerializeField]
     private ShootGun shootGun;
 
-    [SerializeField]
     private BulletCam bulletCam;
 
-    [SerializeField]
     private Bullet bullet;
 
-    [SerializeField]
     private CameraZoom cameraZoom;
 
-    [SerializeField]
     private Camera mainCamera;
     public Camera MainCamera { get { return mainCamera; } }
 
-    [SerializeField]
     private SimpleSmoothMouseLook mouseLook;
-    
+
 
     [Header("Settings")]
     // enable print debugs
@@ -73,6 +65,12 @@ public class GameManager : MonoBehaviour
     private LevelManager levelManager;
 
     private SecurityCameraManager securityCameraManager;
+
+    [SerializeField]
+    private GameObject playerCharacterPrefab;
+    private Transform playerTransform;
+
+    private Quaternion originalPlayerRotation;
 
     void Start()
     {
@@ -100,9 +98,35 @@ public class GameManager : MonoBehaviour
         levelManager.LoadNextLevel();
     }
 
+    private void CreatePlayer ()
+    {
+        GameObject player = Instantiate(playerCharacterPrefab);
+        player.transform.SetParent(transform, false);
+        shootGun = player.GetComponentInChildren<ShootGun>();
+        bulletCam = player.GetComponentInChildren<BulletCam>();
+        cameraZoom = player.GetComponentInChildren<CameraZoom>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mouseLook = player.GetComponentInChildren<SimpleSmoothMouseLook>();
+        bullet = player.GetComponentInChildren<Bullet>();
+        playerTransform = player.transform;
+    }
+
+    private bool expectingRestart = true;
     void Update()
     {
+        if (expectingRestart && KeyManager.main.GetKeyUp(KeyTriggeredAction.Restart)) {
+            playerTransform.gameObject.SetActive(false);
+            UIManager.main.HideMessage();
+            SetScopeVisibility(false);
+            Time.timeScale = 1f;
+            CreatePlayer();
+            levelManager.ReloadLevel();
+        }
+    }
 
+    public int GetNumberOfBullets ()
+    {
+        return levelManager.GetNumberOfBullets();
     }
 
     //
@@ -143,6 +167,10 @@ public class GameManager : MonoBehaviour
                     position
                 )
             );
+        }
+        if (playerTransform == null)
+        {
+            CreatePlayer();
         }
         playerTransform.position = position;
         shootGun.UpdateOrigin();

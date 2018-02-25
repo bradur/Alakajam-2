@@ -41,16 +41,17 @@ public class ShootGun : MonoBehaviour
     void Start()
     {
         timeSinceLastShot = minShootInterval;
-        
+
     }
 
-    public void UpdateOrigin ()
+    public void UpdateOrigin()
     {
         shootOrigin = shootOriginTransform.position;
     }
 
     void Update()
     {
+        UpdateOrigin();
         Debug.DrawRay(shootOrigin, aim.forward * maxRayLength, Color.red);
         timeSinceLastShot += Time.deltaTime;
         if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShootGun))
@@ -93,7 +94,7 @@ public class ShootGun : MonoBehaviour
         if (simpleHits.Length > 0)
         {
             RaycastHit[] complexHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, complexEnemyLayer);
-            
+
 
             List<Enemy> enemiesHit = new List<Enemy>();
 
@@ -114,7 +115,7 @@ public class ShootGun : MonoBehaviour
                     enemiesHit.Add(enemy);
                 }
                 // handle hit logic here
-                if(enemiesHit.Count <= 0)
+                if (enemiesHit.Count <= 0)
                 {
                     holes.ForEach(hole => hole.GetComponent<MeshRenderer>().enabled = true);
                 }
@@ -127,6 +128,7 @@ public class ShootGun : MonoBehaviour
             furthestPoint = furthestPoint + aim.forward.normalized * overShoot;
 
             GameManager.main.SetScopeVisibility(false);
+
             GameManager.main.StartBulletCam(shootOrigin, furthestPoint, aim.forward, complexHits.Length, enemiesHit);
 
             foreach (RaycastHit hitInfo in simpleHits)
@@ -140,6 +142,10 @@ public class ShootGun : MonoBehaviour
         }
         else
         {
+            if (GameManager.main.GetNumberOfBullets() == 0)
+            {
+                UIManager.main.ShowMessage("Out of bullets! Press R to restart.");
+            }
             holes.ForEach(hole => hole.GetComponent<MeshRenderer>().enabled = true);
         }
     }
@@ -151,12 +157,12 @@ public class ShootGun : MonoBehaviour
         bool goBack = false;
         RaycastHit[] wallHit = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
         RaycastHit lastHit = default(RaycastHit);
-        while(wallHit.Length > 0)
+        while (wallHit.Length > 0)
         {
             RaycastHit firstHit = wallHit[0];
             Vector3 newOrigin = firstHit.point + aim.forward * 0.01f;
             Vector3 spawnPoint = firstHit.point - aim.forward * 0.01f;
-            Vector3 normal = firstHit.normal; 
+            Vector3 normal = firstHit.normal;
             BulletHole hole = BulletHoleManager.main.SpawnBulletHole();
             //hole.transform.LookAt(firstHit.point + firstHit.normal);
             hole.transform.localRotation = Quaternion.LookRotation(Vector3.up, firstHit.normal);
@@ -165,7 +171,7 @@ public class ShootGun : MonoBehaviour
             r.enabled = false;
             holes.Add(hole);
             wallHit = Physics.RaycastAll(newOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
-            if(wallHit.Length == 0)
+            if (wallHit.Length == 0)
             {
                 lastHit = firstHit;
             }
@@ -173,14 +179,14 @@ public class ShootGun : MonoBehaviour
             goBack = true;
         }
 
-        if(!goBack)
+        if (!goBack)
         {
             Debug.Log(count);
             return holes;
         }
-        wallHit = Physics.RaycastAll(lastHit.point+aim.forward*0.1f, (-1*aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
+        wallHit = Physics.RaycastAll(lastHit.point + aim.forward * 0.1f, (-1 * aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
 
-        while(wallHit.Length > 0)
+        while (wallHit.Length > 0)
         {
             RaycastHit firstHit = wallHit[0];
             Vector3 newOrigin = firstHit.point - aim.forward * 0.01f;
