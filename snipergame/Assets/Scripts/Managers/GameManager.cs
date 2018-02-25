@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     private BulletCam bulletCam;
 
     [SerializeField]
+    private Bullet bullet;
+
+    [SerializeField]
     private CameraZoom cameraZoom;
 
     [SerializeField]
@@ -176,5 +179,10 @@ public class GameManager : MonoBehaviour
     {
         levelManager.GetKills(number);
 
+    }
+
+    public Bullet GetBullet()
+    {
+        return bullet;
     }
 }

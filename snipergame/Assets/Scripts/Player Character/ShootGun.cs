@@ -66,7 +66,7 @@ public class ShootGun : MonoBehaviour
     private void Shoot()
     {
         RaycastHit[] simpleHits = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, primitiveEnemyLayer, QueryTriggerInteraction.Collide);
-        BulletHoleRays();
+        List<BulletHole> holes = BulletHoleRays();
         Vector3 furthestPoint = Vector3.zero;
         foreach (RaycastHit hitInfo in simpleHits)
         {
@@ -114,7 +114,10 @@ public class ShootGun : MonoBehaviour
                     enemiesHit.Add(enemy);
                 }
                 // handle hit logic here
-                
+                if(enemiesHit.Count <= 0)
+                {
+                    holes.ForEach(hole => hole.GetComponent<MeshRenderer>().enabled = true);
+                }
             }
             float overShoot = 0.5f;
             if (complexHits.Length == 0)
@@ -135,10 +138,15 @@ public class ShootGun : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            holes.ForEach(hole => hole.GetComponent<MeshRenderer>().enabled = true);
+        }
     }
 
-    private void BulletHoleRays()
+    private List<BulletHole> BulletHoleRays()
     {
+        List<BulletHole> holes = new List<BulletHole>();
         int count = 0;
         bool goBack = false;
         RaycastHit[] wallHit = Physics.RaycastAll(shootOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
@@ -153,6 +161,9 @@ public class ShootGun : MonoBehaviour
             //hole.transform.LookAt(firstHit.point + firstHit.normal);
             hole.transform.localRotation = Quaternion.LookRotation(Vector3.up, firstHit.normal);
             hole.transform.position = spawnPoint;
+            MeshRenderer r = hole.GetComponent<MeshRenderer>();
+            r.enabled = false;
+            holes.Add(hole);
             wallHit = Physics.RaycastAll(newOrigin, aim.forward * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
             if(wallHit.Length == 0)
             {
@@ -165,7 +176,7 @@ public class ShootGun : MonoBehaviour
         if(!goBack)
         {
             Debug.Log(count);
-            return;
+            return holes;
         }
         wallHit = Physics.RaycastAll(lastHit.point+aim.forward*0.1f, (-1*aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
 
@@ -179,11 +190,16 @@ public class ShootGun : MonoBehaviour
             //hole.transform.LookAt(firstHit.point + firstHit.normal);
             hole.transform.localRotation = Quaternion.LookRotation(Vector3.up, firstHit.normal);
             hole.transform.position = spawnPoint;
+            MeshRenderer r = hole.GetComponent<MeshRenderer>();
+            r.enabled = false;
+            holes.Add(hole);
             wallHit = Physics.RaycastAll(newOrigin, (-1 * aim.forward) * maxRayLength, maxRayLength, buildingLayer, QueryTriggerInteraction.Collide);
 
             count++;
         }
 
         Debug.Log(count);
+
+        return holes;
     }
 }
