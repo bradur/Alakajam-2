@@ -25,6 +25,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource musicSource;
 
+    [SerializeField]
+    private AudioSource windSource;
+
     void Awake()
     {
         main = this;
@@ -41,6 +44,17 @@ public class SoundManager : MonoBehaviour
             else
             {
                 musicSource.Play();
+            }
+        }
+        if (windSource != null)
+        {
+            if (sfxMuted)
+            {
+                windSource.Pause();
+            }
+            else
+            {
+                windSource.Play();
             }
         }
     }
