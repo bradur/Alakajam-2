@@ -1698,7 +1698,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494268581550952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -133, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4233217565224544}
@@ -3135,7 +3135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbe19acc0b71454b9b4b6752e4402a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBullets: 10
+  numberOfBullets: 5
   playerPosition: {fileID: 4032220241775888}
   title: 
   numberOfEnemies: 2
@@ -3155,6 +3155,7 @@ MonoBehaviour:
   rotationAxis: 1
   rotationSpan: 20
   rotationSpeed: 0.24
+  direction: 1
   camera: {fileID: 20924875184955300}
 --- !u!114 &114384671207313274
 MonoBehaviour:
@@ -3613,7 +3614,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b01b197b2675ba644bed780822315d78, type: 3}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3681,7 +3682,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b01b197b2675ba644bed780822315d78, type: 3}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
