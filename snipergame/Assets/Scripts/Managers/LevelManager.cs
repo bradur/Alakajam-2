@@ -19,6 +19,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int currentLevelNumber = 0;
 
+    public void DontSeeThroughDeadEnemies()
+    {
+        currentLevel.DontSeeThroughDeadEnemies();
+    }
+
+    public void SeeThroughDeadEnemies()
+    {
+        currentLevel.SeeThroughDeadEnemies();
+    }
+
     public void Initialize()
     {
         initialized = true;
@@ -35,11 +45,16 @@ public class LevelManager : MonoBehaviour
 
     public int GetNumberOfBullets()
     {
-        if(currentLevel != null)
+        if (currentLevel != null)
         {
             return currentLevel.NumberOfBullets;
         }
         return 0;
+    }
+
+    public bool NextLevelIsLastLevel()
+    {
+        return levels.Count <= currentLevelNumber + 1;
     }
 
     public bool LoadNextLevel()
@@ -56,10 +71,8 @@ public class LevelManager : MonoBehaviour
         {
             LoadLevel(currentLevelNumber);
             return true;
-        } else
-        {
-            Debug.Log("The end!");
         }
+        Debug.Log("The end!");
         return false;
     }
 
@@ -95,12 +108,12 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            return currentLevel.SecurityCameras[cam-1];
+            return currentLevel.SecurityCameras[cam - 1];
         }
     }
 
-    public void GetKills(int number)
+    public int GetKills(int number)
     {
-        currentLevel.GetKills(number);
+        return currentLevel.GetKills(number);
     }
 }

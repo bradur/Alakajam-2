@@ -75,10 +75,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Material seeThroughMaterial;
 
+    public void DontSeeThroughDeadEnemies()
+    {
+        levelManager.DontSeeThroughDeadEnemies();
+    }
+
+    public void SeeThroughDeadEnemies()
+    {
+        levelManager.SeeThroughDeadEnemies();
+    }
+
     public Material GetSeeThroughMaterial()
     {
         return seeThroughMaterial;
     }
+
+    private BulletHoleManager bulletHoleManager;
 
     void Start()
     {
@@ -94,19 +106,19 @@ public class GameManager : MonoBehaviour
         TrailManager trailManager = Instantiate(trailManagerPrefab);
         trailManager.transform.SetParent(transform, false);
 
-        BulletHoleManager bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
-        bulletHoleManager.transform.SetParent(transform, false);
-
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
 
         securityCameraManager = Instantiate(securityCameraManagerPrefab);
         securityCameraManager.transform.SetParent(transform, false);
 
+        bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
+        bulletHoleManager.transform.SetParent(transform, false);
+
         levelManager.LoadNextLevel();
     }
 
-    private void CreatePlayer ()
+    private void CreatePlayer()
     {
         GameObject player = Instantiate(playerCharacterPrefab);
         player.transform.SetParent(transform, false);
@@ -119,20 +131,53 @@ public class GameManager : MonoBehaviour
         playerTransform = player.transform;
     }
 
+    void Restart()
+    {
+        Destroy(bulletHoleManager.gameObject);
+        bulletHoleManager = Instantiate(bulletHoleManagerPrefab);
+        bulletHoleManager.transform.SetParent(transform, false);
+        playerTransform.gameObject.SetActive(false);
+        UIManager.main.HideMessage();
+        SetScopeVisibility(false);
+        Time.timeScale = 1f;
+        CreatePlayer();
+        levelManager.ReloadLevel();
+    }
+
     private bool expectingRestart = true;
+
+    private bool expectingNextLevel = false;
+    public void ExpectingNextLevel()
+    {
+        SetSecurityCameraControlState(false);
+        SetCameraControlState(false);
+        if (levelManager.NextLevelIsLastLevel())
+        {
+            UIManager.main.ShowMessage("THE END\nThank you for playing!");
+        }
+        else
+        {
+            UIManager.main.ShowMessage("Well done! Proceed to your next mission by pressing SPACE.");
+            expectingNextLevel = true;
+        }
+    }
     void Update()
     {
-        if (expectingRestart && KeyManager.main.GetKeyUp(KeyTriggeredAction.Restart)) {
-            playerTransform.gameObject.SetActive(false);
+        if (expectingRestart && KeyManager.main.GetKeyUp(KeyTriggeredAction.Restart))
+        {
+            Restart();
+        }
+        if (expectingNextLevel && KeyManager.main.GetKeyUp(KeyTriggeredAction.NextLevel))
+        {
+            levelManager.LoadNextLevel();
+            SetSecurityCameraControlState(true);
+            SetCameraControlState(true);
             UIManager.main.HideMessage();
-            SetScopeVisibility(false);
-            Time.timeScale = 1f;
-            CreatePlayer();
-            levelManager.ReloadLevel();
         }
     }
 
-    public int GetNumberOfBullets ()
+
+    public int GetNumberOfBullets()
     {
         return levelManager.GetNumberOfBullets();
     }
@@ -165,7 +210,7 @@ public class GameManager : MonoBehaviour
         bulletCam.StartCam(start, target, direction, numTargets, enemies);
     }
 
-    public void SetPlayerPosition(Vector3 position)
+    public void SetPlayerPosition(Transform position)
     {
         if (DebugMode)
         {
@@ -180,7 +225,8 @@ public class GameManager : MonoBehaviour
         {
             CreatePlayer();
         }
-        playerTransform.position = position;
+        playerTransform.position = position.position;
+        playerTransform.rotation = position.rotation;
         shootGun.UpdateOrigin();
     }
 
@@ -211,9 +257,9 @@ public class GameManager : MonoBehaviour
         levelManager.LoadNextLevel();
     }
 
-    public void GetKills(int number)
+    public int GetKills(int number)
     {
-        levelManager.GetKills(number);
+        return levelManager.GetKills(number);
 
     }
 

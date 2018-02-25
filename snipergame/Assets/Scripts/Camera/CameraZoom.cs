@@ -78,7 +78,11 @@ public class CameraZoom : MonoBehaviour
         GameManager.main.SetSecurityCameraControlState(!zoomedIn);
         if (zoomedIn)
         {
+            GameManager.main.SetGunVisibility(false);
             UIManager.main.HideLevelTitle();
+        } else
+        {
+            scopedZoom = 0;
         }
     }
 
