@@ -119,7 +119,7 @@ public class ShootGun : MonoBehaviour
             float overShoot = 0.5f;
             if (complexHits.Length == 0)
             {
-                overShoot = 5f;
+                overShoot = 10f;
             }
             furthestPoint = furthestPoint + aim.forward.normalized * overShoot;
 
