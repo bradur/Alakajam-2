@@ -5,6 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour {
 
@@ -60,5 +61,33 @@ public class UIManager : MonoBehaviour {
         hudScope.SetVisibility(visible);
         cursor.enabled = !visible;
     }
-    
+
+    [SerializeField]
+    private List<SimpleHUDElement> cameraIndicators;
+
+    public void ShowSecurityCameraHUD(int numberOfCameras)
+    {
+
+        for (int i = 0; i < cameraIndicators.Count; i += 1)
+        {
+            if (numberOfCameras < i + 1) {
+                cameraIndicators[i].gameObject.SetActive(false);
+            } else
+            {
+                cameraIndicators[i].gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void SetCameraActiveState (int cameraNumber, bool active)
+    {
+        Debug.Log(string.Format("Set camera {0}: {1}", cameraNumber, active));
+        cameraIndicators[cameraNumber - 1].SetActiveState(active);
+    }
+
+    [SerializeField]
+    private GameObject cameraControlContainer;
+    public void SetCameraControlVisibility(bool visibility) {
+        cameraControlContainer.SetActive(visibility);
+    }
 }

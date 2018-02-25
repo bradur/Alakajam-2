@@ -53,7 +53,7 @@ public class BulletCam : MonoBehaviour {
                     enemy.enableRagdoll();
                 }
                 Time.timeScale = 1f;
-                
+                GameManager.main.SetSecurityCameraControlState(true);
                 GameManager.main.GetKills(numberOfHits);
             }
         }
@@ -66,6 +66,7 @@ public class BulletCam : MonoBehaviour {
         bullet.transform.localPosition = bulletStartingPosition;
         if (!bulletOnTheMove)
         {
+            GameManager.main.SetSecurityCameraControlState(false);
             this.numberOfHits = numberOfHits;
             GameManager.main.SetCameraControlState(false);
             oldCamera.GetComponent<Camera>().enabled = false;

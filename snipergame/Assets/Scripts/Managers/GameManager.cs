@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     private LevelManager levelManager;
 
+    private SecurityCameraManager securityCameraManager;
+
     void Start()
     {
         KeyManager keyManager = Instantiate(keyManagerPrefab);
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour
         levelManager = Instantiate(levelManagerPrefab);
         levelManager.transform.SetParent(transform, false);
 
-        SecurityCameraManager securityCameraManager = Instantiate(securityCameraManagerPrefab);
+        securityCameraManager = Instantiate(securityCameraManagerPrefab);
         securityCameraManager.transform.SetParent(transform, false);
 
         levelManager.LoadNextLevel();
@@ -106,6 +108,11 @@ public class GameManager : MonoBehaviour
         mouseLook.enabled = enabled;
         cameraZoom.enabled = enabled;
         shootGun.enabled = enabled;
+    }
+
+    public void SetSecurityCameraControlState(bool allowed)
+    {
+        securityCameraManager.SetCameraControlState(allowed);
     }
 
     public void SetGunVisibility(bool visibility)

@@ -14,48 +14,76 @@ public class SecurityCameraManager : MonoBehaviour
         currentActiveCamera = GameManager.main.MainCamera;
     }
 
+
+    private bool canControlCameras = true;
+    public void SetCameraControlState (bool allowed)
+    {
+        canControlCameras = allowed;
+        SetCamera(-1);
+        UIManager.main.SetCameraControlVisibility(allowed);
+    }
+
     void Update()
     {
-        SetCamera(null);
-        if (KeyManager.main != null)
+        if (canControlCameras && KeyManager.main != null)
         {
-            if (KeyManager.main.GetKey(KeyTriggeredAction.ShowCameraOne))
+            if (KeyManager.main.GetKeyDown(KeyTriggeredAction.ShowCameraOne))
             {
-                SetCamera(GameManager.main.GetSecurityCamera(1));
+                SetCamera(1);
             }
-            else if (KeyManager.main.GetKey(KeyTriggeredAction.ShowCameraTwo))
+            else if (KeyManager.main.GetKeyDown(KeyTriggeredAction.ShowCameraTwo))
             {
-                SetCamera(GameManager.main.GetSecurityCamera(2));
+                SetCamera(2);
             }
-            else if (KeyManager.main.GetKey(KeyTriggeredAction.ShowCameraThree))
+            else if (KeyManager.main.GetKeyDown(KeyTriggeredAction.ShowCameraThree))
             {
-                SetCamera(GameManager.main.GetSecurityCamera(3));
+                SetCamera(3);
             }
-            else if (KeyManager.main.GetKey(KeyTriggeredAction.ShowCameraFour))
+            else if (KeyManager.main.GetKeyDown(KeyTriggeredAction.ShowCameraFour))
             {
-                SetCamera(GameManager.main.GetSecurityCamera(4));
+                SetCamera(4);
             }
             else
             {
-                SetCamera(null);
+                if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShowCameraOne))
+                {
+                    SetCamera(-1);
+                }
+                else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShowCameraTwo))
+                {
+                    SetCamera(-1);
+                }
+                else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShowCameraThree))
+                {
+                    SetCamera(-1);
+                }
+                else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.ShowCameraFour))
+                {
+                    SetCamera(-1);
+                }
             }
         }
     }
 
-    private SecurityCamera currentSecurityCamera = null;
+    private int currentSecurityCameraIndex = -1;
 
-    private void SetCamera(SecurityCamera securityCamera)
+    private void SetCamera(int securityCameraIndex)
     {
-        if (currentSecurityCamera != null)
+        SecurityCamera securityCamera;
+        if (currentSecurityCameraIndex != -1)
         {
-            currentSecurityCamera.Camera.enabled = false;
+            UIManager.main.SetCameraActiveState(currentSecurityCameraIndex, false);
+            securityCamera = GameManager.main.GetSecurityCamera(currentSecurityCameraIndex);
+            securityCamera.Camera.enabled = false;
         }
-        if (securityCamera != null)
+        if (securityCameraIndex != -1)
         {
+            currentSecurityCameraIndex = securityCameraIndex;
             GameManager.main.SetScopeVisibility(false);
-            currentSecurityCamera = securityCamera;
-            currentSecurityCamera.Camera.enabled = true;
             GameManager.main.SetCameraControlState(false);
+            UIManager.main.SetCameraActiveState(securityCameraIndex, true);
+            securityCamera = GameManager.main.GetSecurityCamera(securityCameraIndex);
+            securityCamera.Camera.enabled = true;
         }
         else
         {

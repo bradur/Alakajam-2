@@ -54,6 +54,7 @@ public class Level : MonoBehaviour
                 );
             }
         }
+        UIManager.main.ShowSecurityCameraHUD(securityCameras.Count);
         UIManager.main.SetBulletCount(numberOfBullets);
     }
 

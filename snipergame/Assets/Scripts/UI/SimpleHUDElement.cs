@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class SimpleHUDElement : MonoBehaviour {
+public class SimpleHUDElement : MonoBehaviour
+{
 
     [SerializeField]
     private Text txtComponent;
@@ -15,9 +16,44 @@ public class SimpleHUDElement : MonoBehaviour {
     [SerializeField]
     private Image imgComponent;
 
+    private Color originalColor;
+
+    private string originalText;
+
+    private void Start()
+    {
+        if (imgComponent != null)
+        {
+            originalColor = imgComponent.color;
+        }
+        if (txtComponent != null)
+        {
+            originalText = txtComponent.text;
+        }
+    }
+
     public void SetText(string text)
     {
         txtComponent.text = text;
+        originalText = text;
+    }
+
+    public void SetActiveState(bool active)
+    {
+        if (originalColor == null)
+        {
+            originalColor = imgComponent.color;
+        }
+        if (active)
+        {
+            imgComponent.color = colorVariable;
+            txtComponent.text = "*";
+        }
+        else
+        {
+            imgComponent.color = originalColor;
+            txtComponent.text = originalText;
+        }
     }
 
     private int oldCount;
@@ -26,6 +62,7 @@ public class SimpleHUDElement : MonoBehaviour {
     {
         // animate here from oldcount?
         txtComponent.text = count.ToString();
+        originalText = txtComponent.text;
         oldCount = count;
     }
 
