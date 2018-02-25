@@ -105,11 +105,11 @@ public class CameraZoom : MonoBehaviour
 
         if (zoomedIn)
         {
-            if (KeyManager.main.GetKeyUp(KeyTriggeredAction.IncreaseScopedZoom))
+            if (KeyManager.main.GetKeyUp(KeyTriggeredAction.IncreaseScopedZoom) || Input.GetKeyDown(KeyCode.A))
             {
                 scopedZoom += 1;
             }
-            else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.DecreaseScopedZoom))
+            else if (KeyManager.main.GetKeyUp(KeyTriggeredAction.DecreaseScopedZoom) || Input.GetKeyDown(KeyCode.Z))
             {
                 scopedZoom -= 1;
             }

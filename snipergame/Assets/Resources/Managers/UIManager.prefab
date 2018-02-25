@@ -1054,7 +1054,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1130101926387330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.9045465, y: 2.3810873, z: 29.776987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224137491573696716}
@@ -1790,7 +1790,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Zoom in / out with scrollwheel.
+  m_Text: Zoom in / out with scrollwheel or A/Z.
 --- !u!114 &114488174764689906
 MonoBehaviour:
   m_ObjectHideFlags: 1
