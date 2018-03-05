@@ -77,11 +77,26 @@ Shader "FX/LevelGridShader"
 				a = 2 / minorWidth * abs(abs(i.wPos.z % minorScale) / minorScale - 0.5) * 2 + 2 - 2 / minorWidth;
 				alpha += max(a, 0.0);
 
-				float dist = 100-length(_PlayerPos - i.wPos);
-				//float dist = i.wPos.z;
-				alpha = alpha*(sin((dist+_Time.y*2)*2) - 0.5)*0.5;
-
 				outputColor.a = alpha;
+
+				if (outputColor.a < 0.01) {
+					discard;
+				}
+
+				if (outputColor.a > 1.0) {
+					outputColor.a = 1.0;
+				}
+
+				float dist = 100 - length(_PlayerPos - i.wPos);
+
+				float pulse = (sin((dist*0.4+_Time.y*4)*1) - 0.99) * 100;
+				pulse = max(min(pulse, 1.0), 0.0);
+
+				alpha = (sin((-0.4*(i.wPos.x + i.wPos.y + i.wPos.z)+_Time.y*3)) + 1.0) / 4.0;
+				alpha += (cos((-0.01*(i.wPos.x * i.wPos.y * i.wPos.z) + _Time.y * 2)) + 1.0) / 4.0;
+				alpha = max(min(alpha, 1.0), 0.0);
+
+				outputColor.a = outputColor.a*0.025 + pulse*0.8 + alpha*0.15;
 
 				if (outputColor.a < 0.01) {
 					discard;
